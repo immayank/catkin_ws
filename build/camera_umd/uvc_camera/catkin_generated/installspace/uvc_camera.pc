@@ -1,0 +1,8 @@
+prefix=/home/mayank/catkin_ws/install
+
+Name: uvc_camera
+Description: Description of uvc_camera
+Version: 0.2.1
+Cflags: 
+Libs: -L/home/mayank/catkin_ws/install/lib 
+Requires: 

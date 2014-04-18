@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "gscam")
+set(gscam_MAINTAINER "Jonathan Bohren <jbo@jhu.edu>, Russell Toris <rctoris@wpi.edu>")
+set(gscam_DEPRECATED "")
+set(gscam_VERSION "0.1.3")
+set(gscam_BUILD_DEPENDS "libgstreamer0.10-dev" "libgstreamer-plugins-base0.10-dev" "nodelet" "opencv2" "roscpp" "image_transport" "sensor_msgs" "camera_calibration_parsers" "camera_info_manager")
+set(gscam_RUN_DEPENDS "nodelet" "opencv2" "roscpp" "image_transport" "sensor_msgs" "camera_calibration_parsers" "camera_info_manager")
+set(gscam_BUILDTOOL_DEPENDS "catkin")

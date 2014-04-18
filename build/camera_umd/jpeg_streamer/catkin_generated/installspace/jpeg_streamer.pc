@@ -1,0 +1,8 @@
+prefix=/home/mayank/catkin_ws/install
+
+Name: jpeg_streamer
+Description: Description of jpeg_streamer
+Version: 0.2.1
+Cflags: 
+Libs: -L/home/mayank/catkin_ws/install/lib 
+Requires: 
