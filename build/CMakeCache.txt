@@ -248,10 +248,16 @@ DOXYGEN_EXECUTABLE:FILEPATH=/usr/bin/doxygen
 DOXYGEN_FOUND:BOOL=TRUE
 
 //Path to a file.
+EIGEN_INCLUDE_DIR:PATH=/usr/include/eigen3
+
+//Path to a file.
 EIGEN_INCLUDE_DIRS:PATH=/usr/include/eigen3
 
 //Path to a program.
 EMPY_EXECUTABLE:FILEPATH=/usr/bin/empy
+
+//The directory containing a CMake configuration file for Eigen.
+Eigen_DIR:PATH=/opt/ros/hydro/share/eigen/cmake
 
 //Path to a file.
 FLANN_INCLUDE_DIRS:PATH=/usr/include
@@ -516,6 +522,12 @@ RT_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/librt.so
 //Enable debian style python package layout
 SETUPTOOLS_DEB_LAYOUT:BOOL=ON
 
+//Value Computed by CMake
+SIFT_feature_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/SIFT_feature
+
+//Value Computed by CMake
+SIFT_feature_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/SIFT_feature
+
 //LSB Distrib tag
 UBUNTU:BOOL=TRUE
 
@@ -566,6 +578,24 @@ cv_bridge_DIR:PATH=/opt/ros/hydro/share/cv_bridge/cmake
 
 //The directory containing a CMake configuration file for dynamic_reconfigure.
 dynamic_reconfigure_DIR:PATH=/opt/ros/hydro/share/dynamic_reconfigure/cmake
+
+//Value Computed by CMake
+feature_extract_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/SIFT_feature
+
+//Value Computed by CMake
+feature_extract_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/SIFT_feature
+
+//Value Computed by CMake
+fovis_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/fovis/fovis
+
+//Value Computed by CMake
+fovis_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/fovis/fovis
+
+//Value Computed by CMake
+fovis_ros_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/fovis/fovis_ros
+
+//Value Computed by CMake
+fovis_ros_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/fovis/fovis_ros
 
 //The directory containing a CMake configuration file for gencpp.
 gencpp_DIR:PATH=/opt/ros/hydro/share/gencpp/cmake
@@ -632,6 +662,18 @@ jpeg_streamer_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/camera_umd/jpeg_strea
 lib:FILEPATH=/opt/ros/hydro/lib/libtopic_tools.so
 
 //Value Computed by CMake
+libfovis_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/fovis/libfovis
+
+//The directory containing a CMake configuration file for libfovis.
+libfovis_DIR:PATH=/home/mayank/catkin_ws/devel/share/libfovis/cmake
+
+//Dependencies for target
+libfovis_LIB_DEPENDS:STATIC=
+
+//Value Computed by CMake
+libfovis_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/fovis/libfovis
+
+//Value Computed by CMake
 libviso2_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/viso2/libviso2
 
 //The directory containing a CMake configuration file for libviso2.
@@ -660,6 +702,18 @@ nodelet_uvc_camera_LIB_DEPENDS:STATIC=general;/usr/lib/libboost_thread-mt.so;gen
 
 //The directory containing a CMake configuration file for opencv2.
 opencv2_DIR:PATH=opencv2_DIR-NOTFOUND
+
+//Value Computed by CMake
+openni_launch_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/openni_launch
+
+//Value Computed by CMake
+openni_launch_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/openni_launch
+
+//Value Computed by CMake
+path_map_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/path_map
+
+//Value Computed by CMake
+path_map_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/path_map
 
 //The directory containing a CMake configuration file for pcl_conversions.
 pcl_conversions_DIR:PATH=/opt/ros/hydro/share/pcl_conversions/cmake
@@ -696,6 +750,9 @@ rosgraph_DIR:PATH=/opt/ros/hydro/share/rosgraph/cmake
 
 //The directory containing a CMake configuration file for rosgraph_msgs.
 rosgraph_msgs_DIR:PATH=/opt/ros/hydro/share/rosgraph_msgs/cmake
+
+//The directory containing a CMake configuration file for roslaunch.
+roslaunch_DIR:PATH=/opt/ros/hydro/share/roslaunch/cmake
 
 //The directory containing a CMake configuration file for roslib.
 roslib_DIR:PATH=/opt/ros/hydro/share/roslib/cmake
@@ -762,6 +819,9 @@ viso2_ros_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/viso2/viso2_ros
 
 //Value Computed by CMake
 viso2_ros_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/viso2/viso2_ros
+
+//Dependencies for target
+visualization_LIB_DEPENDS:STATIC=
 
 //The directory containing a CMake configuration file for xmlrpcpp.
 xmlrpcpp_DIR:PATH=/opt/ros/hydro/share/xmlrpcpp/cmake
@@ -934,7 +994,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=10
+CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=16
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -963,10 +1023,14 @@ CMAKE_UNAME:INTERNAL=/bin/uname
 CMAKE_USE_RELATIVE_PATHS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: EIGEN_INCLUDE_DIR
+EIGEN_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//Details about finding Eigen
+FIND_PACKAGE_MESSAGE_DETAILS_Eigen:INTERNAL=[/usr/include/eigen3][v()]
 //Details about finding Flann
 FIND_PACKAGE_MESSAGE_DETAILS_Flann:INTERNAL=[/usr/lib/libflann_cpp_s.a][/usr/include][v()]
 //Details about finding PCL
-FIND_PACKAGE_MESSAGE_DETAILS_PCL:INTERNAL=[/usr/lib/libboost_system-mt.so;/usr/lib/libboost_filesystem-mt.so;/usr/lib/libboost_thread-mt.so;pthread;/usr/lib/libboost_date_time-mt.so;/usr/lib/libboost_iostreams-mt.so;/usr/lib/libboost_serialization-mt.so;optimized;/usr/lib/libpcl_common.so;debug;/usr/lib/libpcl_common.so;optimized;/usr/lib/libflann_cpp_s.a;debug;/usr/lib/libflann_cpp_s.a;optimized;/usr/lib/libpcl_kdtree.so;debug;/usr/lib/libpcl_kdtree.so;optimized;/usr/lib/libpcl_octree.so;debug;/usr/lib/libpcl_octree.so;optimized;/usr/lib/libpcl_search.so;debug;/usr/lib/libpcl_search.so;/usr/lib/libOpenNI.so;vtkCommon;vtkRendering;vtkHybrid;vtkCharts;optimized;/usr/lib/libpcl_io.so;debug;/usr/lib/libpcl_io.so;optimized;/usr/lib/libpcl_sample_consensus.so;debug;/usr/lib/libpcl_sample_consensus.so;optimized;/usr/lib/libpcl_filters.so;debug;/usr/lib/libpcl_filters.so;optimized;/usr/lib/libpcl_visualization.so;debug;/usr/lib/libpcl_visualization.so;optimized;/usr/lib/libpcl_outofcore.so;debug;/usr/lib/libpcl_outofcore.so;optimized;/usr/lib/libpcl_features.so;debug;/usr/lib/libpcl_features.so;optimized;/usr/lib/libpcl_segmentation.so;debug;/usr/lib/libpcl_segmentation.so;optimized;/usr/lib/libpcl_people.so;debug;/usr/lib/libpcl_people.so;optimized;/usr/lib/libpcl_registration.so;debug;/usr/lib/libpcl_registration.so;optimized;/usr/lib/libpcl_recognition.so;debug;/usr/lib/libpcl_recognition.so;optimized;/usr/lib/libpcl_keypoints.so;debug;/usr/lib/libpcl_keypoints.so;optimized;/usr/lib/libqhull.so;debug;/usr/lib/libqhull.so;optimized;/usr/lib/libpcl_surface.so;debug;/usr/lib/libpcl_surface.so;optimized;/usr/lib/libpcl_tracking.so;debug;/usr/lib/libpcl_tracking.so;optimized;/usr/lib/libpcl_apps.so;debug;/usr/lib/libpcl_apps.so;/usr/lib/libboost_system-mt.so;/usr/lib/libboost_filesystem-mt.so;/usr/lib/libboost_thread-mt.so;pthread;/usr/lib/libboost_date_time-mt.so;/usr/lib/libboost_iostreams-mt.so;/usr/lib/libboost_serialization-mt.so;optimized;/usr/lib/libqhull.so;debug;/usr/lib/libqhull.so;/usr/lib/libOpenNI.so;optimized;/usr/lib/libflann_cpp_s.a;debug;/usr/lib/libflann_cpp_s.a;vtkCommon;vtkRendering;vtkHybrid;vtkCharts][/usr/include/pcl-1.7;/usr/include/eigen3;/usr/include;/usr/include/ni;/usr/include/vtk-5.8;/usr/include/qhull][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PCL:INTERNAL=[/usr/lib/libboost_system-mt.so;/usr/lib/libboost_filesystem-mt.so;/usr/lib/libboost_thread-mt.so;/usr/lib/libboost_date_time-mt.so;/usr/lib/libboost_iostreams-mt.so;/usr/lib/libboost_serialization-mt.so;optimized;/usr/lib/libpcl_common.so;debug;/usr/lib/libpcl_common.so;optimized;/usr/lib/libflann_cpp_s.a;debug;/usr/lib/libflann_cpp_s.a;optimized;/usr/lib/libpcl_kdtree.so;debug;/usr/lib/libpcl_kdtree.so;optimized;/usr/lib/libpcl_octree.so;debug;/usr/lib/libpcl_octree.so;optimized;/usr/lib/libpcl_search.so;debug;/usr/lib/libpcl_search.so;/usr/lib/libOpenNI.so;vtkCommon;vtkRendering;vtkHybrid;vtkCharts;optimized;/usr/lib/libpcl_io.so;debug;/usr/lib/libpcl_io.so;optimized;/usr/lib/libpcl_sample_consensus.so;debug;/usr/lib/libpcl_sample_consensus.so;optimized;/usr/lib/libpcl_filters.so;debug;/usr/lib/libpcl_filters.so;optimized;/usr/lib/libpcl_visualization.so;debug;/usr/lib/libpcl_visualization.so;optimized;/usr/lib/libpcl_outofcore.so;debug;/usr/lib/libpcl_outofcore.so;optimized;/usr/lib/libpcl_features.so;debug;/usr/lib/libpcl_features.so;optimized;/usr/lib/libpcl_segmentation.so;debug;/usr/lib/libpcl_segmentation.so;optimized;/usr/lib/libpcl_people.so;debug;/usr/lib/libpcl_people.so;optimized;/usr/lib/libpcl_registration.so;debug;/usr/lib/libpcl_registration.so;optimized;/usr/lib/libpcl_recognition.so;debug;/usr/lib/libpcl_recognition.so;optimized;/usr/lib/libpcl_keypoints.so;debug;/usr/lib/libpcl_keypoints.so;optimized;/usr/lib/libqhull.so;debug;/usr/lib/libqhull.so;optimized;/usr/lib/libpcl_surface.so;debug;/usr/lib/libpcl_surface.so;optimized;/usr/lib/libpcl_tracking.so;debug;/usr/lib/libpcl_tracking.so;optimized;/usr/lib/libpcl_apps.so;debug;/usr/lib/libpcl_apps.so;/usr/lib/libboost_system-mt.so;/usr/lib/libboost_filesystem-mt.so;/usr/lib/libboost_thread-mt.so;/usr/lib/libboost_date_time-mt.so;/usr/lib/libboost_iostreams-mt.so;/usr/lib/libboost_serialization-mt.so;optimized;/usr/lib/libqhull.so;debug;/usr/lib/libqhull.so;/usr/lib/libOpenNI.so;optimized;/usr/lib/libflann_cpp_s.a;debug;/usr/lib/libflann_cpp_s.a;vtkCommon;vtkRendering;vtkHybrid;vtkCharts][/usr/include/pcl-1.7;/usr/include/eigen3;/usr/include;/usr/include/ni;/usr/include/vtk-5.8;/usr/include/qhull][v()]
 //Details about finding PCL_APPS
 FIND_PACKAGE_MESSAGE_DETAILS_PCL_APPS:INTERNAL=[/usr/lib/libpcl_apps.so][/usr/include/pcl-1.7][v()]
 //Details about finding PCL_COMMON
@@ -1250,26 +1314,36 @@ PC_FLANN_flann_INCLUDEDIR:INTERNAL=
 PC_FLANN_flann_LIBDIR:INTERNAL=
 PC_FLANN_flann_PREFIX:INTERNAL=
 PC_FLANN_flann_VERSION:INTERNAL=
-PC_OPENNI_CFLAGS:INTERNAL=
+PC_OPENNI_CFLAGS:INTERNAL=-I/usr/include/libusb-1.0;-I/usr/include/openni
 PC_OPENNI_CFLAGS_I:INTERNAL=
 PC_OPENNI_CFLAGS_OTHER:INTERNAL=
-PC_OPENNI_FOUND:INTERNAL=
-PC_OPENNI_INCLUDEDIR:INTERNAL=
-PC_OPENNI_LIBDIR:INTERNAL=
+PC_OPENNI_FOUND:INTERNAL=1
+PC_OPENNI_INCLUDEDIR:INTERNAL=/usr/include/openni
+PC_OPENNI_INCLUDE_DIRS:INTERNAL=/usr/include/libusb-1.0;/usr/include/openni
+PC_OPENNI_LDFLAGS:INTERNAL=-lOpenNI;-lusb-1.0
+PC_OPENNI_LDFLAGS_OTHER:INTERNAL=
+PC_OPENNI_LIBDIR:INTERNAL=/usr/lib
+PC_OPENNI_LIBRARIES:INTERNAL=OpenNI;usb-1.0
+PC_OPENNI_LIBRARY_DIRS:INTERNAL=
 PC_OPENNI_LIBS:INTERNAL=
 PC_OPENNI_LIBS_L:INTERNAL=
 PC_OPENNI_LIBS_OTHER:INTERNAL=
 PC_OPENNI_LIBS_PATHS:INTERNAL=
-PC_OPENNI_PREFIX:INTERNAL=
-PC_OPENNI_STATIC_CFLAGS:INTERNAL=
+PC_OPENNI_PREFIX:INTERNAL=/usr
+PC_OPENNI_STATIC_CFLAGS:INTERNAL=-I/usr/include/libusb-1.0;-I/usr/include/openni
 PC_OPENNI_STATIC_CFLAGS_I:INTERNAL=
 PC_OPENNI_STATIC_CFLAGS_OTHER:INTERNAL=
+PC_OPENNI_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include/libusb-1.0;/usr/include/openni
+PC_OPENNI_STATIC_LDFLAGS:INTERNAL=-pthread;-lOpenNI;-lusb-1.0;-lrt
+PC_OPENNI_STATIC_LDFLAGS_OTHER:INTERNAL=
 PC_OPENNI_STATIC_LIBDIR:INTERNAL=
+PC_OPENNI_STATIC_LIBRARIES:INTERNAL=OpenNI;usb-1.0;rt
+PC_OPENNI_STATIC_LIBRARY_DIRS:INTERNAL=
 PC_OPENNI_STATIC_LIBS:INTERNAL=
 PC_OPENNI_STATIC_LIBS_L:INTERNAL=
 PC_OPENNI_STATIC_LIBS_OTHER:INTERNAL=
 PC_OPENNI_STATIC_LIBS_PATHS:INTERNAL=
-PC_OPENNI_VERSION:INTERNAL=
+PC_OPENNI_VERSION:INTERNAL=1.3.2.1
 PC_OPENNI_openni-dev_INCLUDEDIR:INTERNAL=
 PC_OPENNI_openni-dev_LIBDIR:INTERNAL=
 PC_OPENNI_openni-dev_PREFIX:INTERNAL=

@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "SIFT_feature")
+set(SIFT_feature_MAINTAINER "mayank <mayank@gmail.com>")
+set(SIFT_feature_DEPRECATED "")
+set(SIFT_feature_VERSION "0.0.0")
+set(SIFT_feature_BUILD_DEPENDS )
+set(SIFT_feature_RUN_DEPENDS )
+set(SIFT_feature_BUILDTOOL_DEPENDS "catkin" "roscpp" "std_msgs" "opencv2" "cv_bridge" "image_transport" "message_filters" "sensor_msgs")

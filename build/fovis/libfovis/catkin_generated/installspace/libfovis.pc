@@ -1,0 +1,8 @@
+prefix=/home/mayank/catkin_ws/install
+
+Name: libfovis
+Description: Description of libfovis
+Version: 0.0.4
+Cflags: -I/home/mayank/catkin_ws/install/include
+Libs: -L/home/mayank/catkin_ws/install/lib -llibfovis
+Requires: 

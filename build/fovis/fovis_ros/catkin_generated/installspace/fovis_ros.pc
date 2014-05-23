@@ -1,0 +1,8 @@
+prefix=/home/mayank/catkin_ws/install
+
+Name: fovis_ros
+Description: Description of fovis_ros
+Version: 0.0.1
+Cflags: -I/home/mayank/catkin_ws/install/include
+Libs: -L/home/mayank/catkin_ws/install/lib 
+Requires: 

@@ -203,48 +203,6 @@ bond_generate_messages_py/fast:
 .PHONY : bond_generate_messages_py/fast
 
 # Convenience name for target.
-gscam/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 gscam/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-.PHONY : gscam/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_cpp: gscam/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-.PHONY : geometry_msgs_generate_messages_cpp
-
-# fast build rule for target.
-geometry_msgs_generate_messages_cpp/fast:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f gscam/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make gscam/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
-.PHONY : geometry_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-gscam/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 gscam/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-.PHONY : gscam/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_lisp: gscam/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-.PHONY : geometry_msgs_generate_messages_lisp
-
-# fast build rule for target.
-geometry_msgs_generate_messages_lisp/fast:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f gscam/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make gscam/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
-.PHONY : geometry_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-gscam/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 gscam/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-.PHONY : gscam/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_py: gscam/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-.PHONY : geometry_msgs_generate_messages_py
-
-# fast build rule for target.
-geometry_msgs_generate_messages_py/fast:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f gscam/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make gscam/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
-.PHONY : geometry_msgs_generate_messages_py/fast
-
-# Convenience name for target.
 gscam/CMakeFiles/gscam.dir/rule:
 	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 gscam/CMakeFiles/gscam.dir/rule
 .PHONY : gscam/CMakeFiles/gscam.dir/rule
@@ -313,174 +271,6 @@ nodelet_generate_messages_py: gscam/CMakeFiles/nodelet_generate_messages_py.dir/
 nodelet_generate_messages_py/fast:
 	cd /home/mayank/catkin_ws/build && $(MAKE) -f gscam/CMakeFiles/nodelet_generate_messages_py.dir/build.make gscam/CMakeFiles/nodelet_generate_messages_py.dir/build
 .PHONY : nodelet_generate_messages_py/fast
-
-# Convenience name for target.
-gscam/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 gscam/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : gscam/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: gscam/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : roscpp_generate_messages_cpp
-
-# fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f gscam/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make gscam/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
-
-# Convenience name for target.
-gscam/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 gscam/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : gscam/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: gscam/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : roscpp_generate_messages_lisp
-
-# fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f gscam/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make gscam/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
-
-# Convenience name for target.
-gscam/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 gscam/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : gscam/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: gscam/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : roscpp_generate_messages_py
-
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f gscam/CMakeFiles/roscpp_generate_messages_py.dir/build.make gscam/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
-
-# Convenience name for target.
-gscam/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 gscam/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : gscam/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: gscam/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f gscam/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make gscam/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-gscam/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 gscam/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : gscam/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: gscam/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f gscam/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make gscam/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-gscam/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 gscam/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : gscam/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: gscam/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f gscam/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make gscam/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-gscam/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 gscam/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-.PHONY : gscam/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_cpp: gscam/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-.PHONY : sensor_msgs_generate_messages_cpp
-
-# fast build rule for target.
-sensor_msgs_generate_messages_cpp/fast:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f gscam/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make gscam/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
-.PHONY : sensor_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-gscam/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 gscam/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-.PHONY : gscam/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_lisp: gscam/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-.PHONY : sensor_msgs_generate_messages_lisp
-
-# fast build rule for target.
-sensor_msgs_generate_messages_lisp/fast:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f gscam/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make gscam/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
-.PHONY : sensor_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-gscam/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 gscam/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-.PHONY : gscam/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_py: gscam/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-.PHONY : sensor_msgs_generate_messages_py
-
-# fast build rule for target.
-sensor_msgs_generate_messages_py/fast:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f gscam/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make gscam/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
-.PHONY : sensor_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-gscam/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 gscam/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : gscam/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_cpp: gscam/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : std_msgs_generate_messages_cpp
-
-# fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f gscam/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make gscam/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-gscam/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 gscam/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : gscam/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_lisp: gscam/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : std_msgs_generate_messages_lisp
-
-# fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f gscam/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make gscam/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-gscam/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 gscam/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : gscam/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: gscam/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : std_msgs_generate_messages_py
-
-# fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	cd /home/mayank/catkin_ws/build && $(MAKE) -f gscam/CMakeFiles/std_msgs_generate_messages_py.dir/build.make gscam/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
 
 src/gscam.o: src/gscam.cpp.o
 .PHONY : src/gscam.o
@@ -565,9 +355,6 @@ help:
 	@echo "... bond_generate_messages_lisp"
 	@echo "... bond_generate_messages_py"
 	@echo "... edit_cache"
-	@echo "... geometry_msgs_generate_messages_cpp"
-	@echo "... geometry_msgs_generate_messages_lisp"
-	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... gscam"
 	@echo "... gscam_node"
 	@echo "... install"
@@ -578,18 +365,6 @@ help:
 	@echo "... nodelet_generate_messages_lisp"
 	@echo "... nodelet_generate_messages_py"
 	@echo "... rebuild_cache"
-	@echo "... roscpp_generate_messages_cpp"
-	@echo "... roscpp_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... sensor_msgs_generate_messages_cpp"
-	@echo "... sensor_msgs_generate_messages_lisp"
-	@echo "... sensor_msgs_generate_messages_py"
-	@echo "... std_msgs_generate_messages_cpp"
-	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... std_msgs_generate_messages_py"
 	@echo "... test"
 	@echo "... src/gscam.o"
 	@echo "... src/gscam.i"

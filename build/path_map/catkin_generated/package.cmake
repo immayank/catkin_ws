@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "path_map")
+set(path_map_MAINTAINER "mayank <mayank@todo.todo>")
+set(path_map_DEPRECATED "")
+set(path_map_VERSION "0.0.0")
+set(path_map_BUILD_DEPENDS )
+set(path_map_RUN_DEPENDS )
+set(path_map_BUILDTOOL_DEPENDS "catkin" "roscpp" "std_msgs" "opencv2" "cv_bridge" "image_transport" "message_filters" "sensor_msgs")
