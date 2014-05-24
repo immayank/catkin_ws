@@ -85,7 +85,6 @@ ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unsp
 IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   INCLUDE("/home/mayank/catkin_ws/build/gtest/cmake_install.cmake")
-  INCLUDE("/home/mayank/catkin_ws/build/SIFT_feature/cmake_install.cmake")
   INCLUDE("/home/mayank/catkin_ws/build/camera_umd/camera_umd/cmake_install.cmake")
   INCLUDE("/home/mayank/catkin_ws/build/fovis/fovis/cmake_install.cmake")
   INCLUDE("/home/mayank/catkin_ws/build/gscam/cmake_install.cmake")
@@ -99,6 +98,7 @@ IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   INCLUDE("/home/mayank/catkin_ws/build/camera_umd/uvc_camera/cmake_install.cmake")
   INCLUDE("/home/mayank/catkin_ws/build/viso2/viso2/cmake_install.cmake")
   INCLUDE("/home/mayank/catkin_ws/build/viso2/viso2_ros/cmake_install.cmake")
+  INCLUDE("/home/mayank/catkin_ws/build/visual_od/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)
 

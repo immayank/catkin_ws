@@ -41,6 +41,8 @@ using namespace sensor_msgs;
 using namespace message_filters;
 int der_x=1,der_y=1,kernel=1,value=1500,ratio=0;
 
+
+
 void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager)
 {
 
@@ -58,17 +60,6 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager)
 	
     
    ORB orb;
-
-
-// In case of SURF, you apply the below two lines
- //   createTrackbar( "Value","SIFT", &value,10000, NULL );
-  //  cv::SurfFeatureDetector detector(1500);
-   // cv::SurfDescriptorExtractor extractor;
-
-
-    //FAST feature detector 
-    // cv::FastFeatureDetector detector(1500);
-    // cv::FastDescriptorExtractor extractor;
      
 
     // Feature detection
@@ -86,7 +77,8 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager)
     // Feature descriptor computation
 
     // corresponded points
-	vector< vector< DMatch >  > matches;
+	vector< vector< DMatch >  > matches1;
+	vector< vector< DMatch >  > matches2;
  
     // L2 distance based matching. Brute Force Matching
     BFMatcher matcher(NORM_L1); 
@@ -95,36 +87,77 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager)
    // FlannBasedMatcher matcher;
  
     // display of corresponding points
-    matcher.knnMatch( descriptor1, descriptor2, matches ,2);
- 
-	vector< DMatch > good_matches;
-	good_matches.reserve(matches.size());  
-	   
-	for (size_t i = 0; i < matches.size(); ++i)
-	{ 
-	    if (matches[i].size() < 2)
-		        continue;
-	   
-	    const DMatch &m1 = matches[i][0];
-	    const DMatch &m2 = matches[i][1];
-		
-	    if(m1.distance <= nndrRatio * m2.distance)        
-	    good_matches.push_back(m1);     
-	}
-
-	std::vector< Point2f >  obj;
-    std::vector< Point2f >  scene;
- 
-    for( unsigned int i = 0; i < good_matches.size(); i++ )
-    {
-        //-- Get the keypoints from the good matches
-        obj.push_back( kp1[ good_matches[i].queryIdx ].pt );
-        scene.push_back( kp2[ good_matches[i].trainIdx ].pt );
+    matcher.knnMatch( descriptor1, descriptor2, matches1 ,2);
+    matcher.knnMatch( descriptor2, descriptor1, matches2 ,2);
+    
+	  std::vector<std::vector<cv::DMatch> > matches;
+   // Convert keypoints into Point2f
+   vector<Point2f> points1, points2;
+   Mat fundemental;
+   for (vector<DMatch>::
+         const_iterator it= matches.begin();
+       it!= matches.end(); ++it) {
+       // Get the position of left keypoints
+       float x= kp1[it->queryIdx].pt.x;
+       float y= kp1[it->queryIdx].pt.y;
+       points1.push_back(cv::Point2f(x,y));
+       // Get the position of right keypoints
+       x= kp2[it->trainIdx].pt.x;
+       y= kp2[it->trainIdx].pt.y;
+       points2.push_back(cv::Point2f(x,y));
     }
-     
+   
+	std::vector<cv::DMatch>& outMatches;
+
+	vector<uchar> inliers(points1.size(),0);
+	if (points1.size()>0&&points2.size()>0){
+      cv::Mat fundemental= cv::findFundamentalMat(
+         cv::Mat(points1),cv::Mat(points2), // matching points
+          inliers,       // match status (inlier or outlier)
+          CV_FM_RANSAC, // RANSAC method
+          distance,      // distance to epipolar line
+          confidence); // confidence probability
+      // extract the surviving (inliers) matches
+      vector<uchar>::const_iterator
+                         itIn= inliers.begin();
+      vector<cv::DMatch>::const_iterator
+                         itM= matches.begin();
+      // for all matches
+      for ( ;itIn!= inliers.end(); ++itIn, ++itM) {
+         if (*itIn) { // it is a valid match
+             outMatches.push_back(*itM);
+          }
+       }
+       if (true) {
+       // The F matrix will be recomputed with
+       // all accepted matches
+          // Convert keypoints into Point2f
+          // for final F computation
+          points1.clear();
+          points2.clear();
+          for (std::vector<cv::DMatch>::
+                 const_iterator it= outMatches.begin();
+              it!= outMatches.end(); ++it) {
+              // Get the position of left keypoints
+              float x= kp1[it->queryIdx].pt.x;
+              float y= kp1[it->queryIdx].pt.y;
+              points1.push_back(cv::Point2f(x,y));
+              // Get the position of right keypoints
+              x= kp2[it->trainIdx].pt.x;
+              y= kp2[it->trainIdx].pt.y;
+              points2.push_back(cv::Point2f(x,y));
+          }
+          // Compute 8-point F from all accepted matches
+          if (points1.size()>0&&points2.size()>0){
+             fundemental= cv::findFundamentalMat(
+                cv::Mat(points1),cv::Mat(points2), // matches
+                CV_FM_8POINT); // 8-point method
+          }
+       }
+    }
     // matching result
     Mat result;
-    drawMatches( left_gray, kp1, right_gray, kp2, matches, result );
+   // drawMatches( left_gray, kp1, right_gray, kp2, matches, result );
  
     // output file
  //   imwrite( "result.bmp", result );

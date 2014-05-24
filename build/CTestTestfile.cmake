@@ -5,7 +5,6 @@
 # This file includes the relevent testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 SUBDIRS(gtest)
-SUBDIRS(SIFT_feature)
 SUBDIRS(camera_umd/camera_umd)
 SUBDIRS(fovis/fovis)
 SUBDIRS(gscam)
@@ -19,3 +18,4 @@ SUBDIRS(stereo)
 SUBDIRS(camera_umd/uvc_camera)
 SUBDIRS(viso2/viso2)
 SUBDIRS(viso2/viso2_ros)
+SUBDIRS(visual_od)

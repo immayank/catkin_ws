@@ -1,0 +1,8 @@
+prefix=/home/mayank/catkin_ws/install
+
+Name: visual_od
+Description: Description of visual_od
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/mayank/catkin_ws/install/lib 
+Requires: 

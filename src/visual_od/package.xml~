@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>SIFT_Feature</name>
+  <name>visual_od</name>
   <version>0.0.0</version>
-  <description>Extract SIFT features</description>
+  <description>Visual Odometry</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->

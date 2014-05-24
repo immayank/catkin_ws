@@ -1,1 +1,1 @@
-SIFT_feature:camera_umd/camera_umd:camera_umd/jpeg_streamer:camera_umd/uvc_camera:fovis/fovis:fovis/fovis_ros:fovis/libfovis:gscam:openni_launch:path_map:stereo:viso2/libviso2:viso2/viso2:viso2/viso2_ros
+camera_umd/camera_umd:camera_umd/jpeg_streamer:camera_umd/uvc_camera:fovis/fovis:fovis/fovis_ros:fovis/libfovis:gscam:openni_launch:path_map:stereo:viso2/libviso2:viso2/viso2:viso2/viso2_ros:visual_od

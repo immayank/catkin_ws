@@ -1,7 +1,7 @@
 <package>
-  <description brief="SIFT_feature">
+  <description brief="viusal_od">
 
-     SIFT_feature
+    visual_od
 
   </description>
   <author>Mayank</author>

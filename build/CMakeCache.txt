@@ -659,7 +659,7 @@ jpeg_streamer_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/camera_umd/jpeg_str
 jpeg_streamer_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/camera_umd/jpeg_streamer
 
 //Path to a library.
-lib:FILEPATH=/opt/ros/hydro/lib/libtopic_tools.so
+lib:FILEPATH=/opt/ros/hydro/lib/libroslib.so
 
 //Value Computed by CMake
 libfovis_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/fovis/libfovis
@@ -819,6 +819,12 @@ viso2_ros_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/viso2/viso2_ros
 
 //Value Computed by CMake
 viso2_ros_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/viso2/viso2_ros
+
+//Value Computed by CMake
+visual_od_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/visual_od
+
+//Value Computed by CMake
+visual_od_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/visual_od
 
 //Dependencies for target
 visualization_LIB_DEPENDS:STATIC=
