@@ -75,4 +75,6 @@ opencv2/nonfree/nonfree.hpp
 -
 opencv2/nonfree/features2d.hpp
 -
+opencv2/stitching/stitcher.hpp
+/home/mayank/catkin_ws/src/visual_od/src/opencv2/stitching/stitcher.hpp
 
