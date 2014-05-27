@@ -606,48 +606,51 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager)
     }	
 
     vector<Point> matchindex45;
-
-    for(int j=0;j<points5.size();j++){
-	for(int k=0;k<matchindex23.size();k++){
-		if (points4[matchindex23[k].y] == points5[j]){
-			int x=matchindex23[k].y;
-			int y=j; 
-			matchindex45.push_back(Point(x,y));
-		}			
+    for (int i=0;i<points4.size();i++){
+	for(int j=0;j<points5.size();j++){
+		for(int k=0;k<matchindex23.size();k++){
+			if (matchindex23[k].y == i){
+				if (points4[i]==points5[j]){
+					int x=i;
+					int y=j; 
+					matchindex45.push_back(Point(x,y));
+				}			
+			}
+		}
 	}
     }
-
-///////////////
 
     vector<Point> matchindex67;
-
-    for(int j=0;j<points7.size();j++){
-	for(int k=0;k<matchindex45.size();k++){
-		if (points6[matchindex45[k].y] == points7[j]){
-			int x=matchindex45[k].y;
-			int y=j; 
-			matchindex67.push_back(Point(x,y));
-		}			
+    for (int i=0;i<points6.size();i++){
+	for(int j=0;j<points7.size();j++){
+		for(int k=0;k<matchindex45.size();k++){
+			if (matchindex45[k].y == i){
+				if (points4[i]==points5[j]){
+					int x=i;
+					int y=j; 
+					matchindex67.push_back(Point(x,y));
+				}			
+			}
+		}
 	}
     }
 
-//////////////
     vector<Point> matchindex81;
-    for(int j=0;j<points1.size();j++){
-	for(int k=0;k<matchindex67.size();k++){
-		if (points8[matchindex67[k].y] == points1[j]){
-			int x=matchindex67[k].y;
-			int y=j; 
-			matchindex81.push_back(Point(x,y));
-		}			
+    for (int i=0;i<points8.size();i++){
+	for(int j=0;j<points1.size();j++){
+		for(int k=0;k<matchindex67.size();k++){
+			if (matchindex67[k].y == i){
+				if (points8[i]==points1[j]){
+					int x=i;
+					int y=j; 
+					matchindex81.push_back(Point(x,y));
+				}			
+			}
+		}
 	}
     }
 
-	cout<<"match23 "<<matchindex23<<endl<<" "<<endl;
-	cout<<"match45 "<<matchindex45<<endl<<" "<<endl;
-	cout<<"match67 "<<matchindex67<<endl<<" "<<endl;
-	cout<<"match81 "<<matchindex81<<endl<<" "<<endl;
-	cout <<"*********************************"<<endl;
+//	cout<<matchindex81<<endl<<" end"<<endl;
 
 
 
@@ -655,33 +658,10 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager)
     Mat check2=left_old.clone();
     Mat check3=right_new.clone();
     Mat check4=right_old.clone();
-
-    for (int i=0;i<matchindex81.size();i++){
-	circle(check1,points1[matchindex81[i].y],3,Scalar(255,0,0),-1,8,0);
-	
-    }
-
-    vector<Point> newfound23;
-    for (int i=0;i<matchindex81.size();i++){
-    	for (int j=0;j<matchindex23.size();j++){
-		if (matchindex81[i].y==matchindex23[j].x){
-			circle(check2,points2[matchindex23[j].x],3,Scalar(255,0,0),-1,8,0);
-			newfound23.push_back(matchindex23[j]);
-		}
-    	}
-    }
-
-    cout << "81 size = "<< matchindex81.size()<<endl;
-    cout << "23 size = "<< newfound23.size()<<endl;
-    cout << "*********************"<<endl;
-
     resize(check1, check1, Size(0,0), 0.5, 0.5, CV_INTER_LINEAR );
     resize(check2, check2, Size(0,0), 0.5, 0.5, CV_INTER_LINEAR );
     resize(check3, check3, Size(0,0), 0.5, 0.5, CV_INTER_LINEAR );
     resize(check4, check4, Size(0,0), 0.5, 0.5, CV_INTER_LINEAR );
-
-    
-
 
 
     Mat new_view(480,640, CV_8UC1);
@@ -705,11 +685,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager)
     putText( new_view, "Left(t-1)", Point(0+3, (check1.size()).height+20), 1,1,Scalar( 0, 0, 0 ), 1, 7,false);
     putText( new_view, "Right(t-1)", Point((check1.size()).width+3, (check1.size()).height+20), 1,1,Scalar( 0, 0, 0 ), 1, 7,false);
 
-
-
-
-
-   imshow("Features Found Again",new_view);
+//    imshow("Features Found Again old",tmp2);
 
     waitKey(2); //press any key to quit
     

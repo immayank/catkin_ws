@@ -1,4 +1,3 @@
-
 #include<vector>
 #include<math.h>
 #include <ros/ros.h>
@@ -45,6 +44,19 @@ int der_x=1,der_y=1,kernel=1,value=1500,ratio=0.65f;
 Mat left_new,right_new;
 Mat left_old,right_old;
 int iteration=1;
+
+
+struct pointmatch{
+	public:
+		Point2f point1;
+		Point2f point2;
+		Point2f point3;
+		Point2f point4;
+		
+		//~ pointmatch () { };
+		//~ ~pointmatch ();
+		//~ 
+};
 
 void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager)
 {
@@ -590,82 +602,144 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager)
 //    cout << points1[0].x<<"  "<<points1[0].x<<endl;
     vector<Point> matchindex23;
 
-    std::vector<cv::Point2f> matched_points;    
+    vector<pointmatch> mp_new;
+    vector<pointmatch> mp_old;
 
 
 // Finding all matched points
 
     for (int i=0;i<points2.size();i++){
-	for(int j=0;j<points3.size();j++){
-		if (points2[i]==points3[j]){
-			int x=i;
-			int y=j; 
-			matchindex23.push_back(Point(x,y));
+		for(int j=0;j<points3.size();j++){
+			if (points2[i]==points3[j]){
+				pointmatch a1;
+				a1.point1 = points1[i];
+				a1.point2 = points2[i];
+				mp_new.push_back(a1);
+			}
 		}
+    }
 
-	}
-    }	
 
-    vector<Point> matchindex45;
+	mp_old = mp_new;
+	mp_new.clear();
+	vector<pointmatch>().swap(mp_new);
+	
+	
     for (int i=0;i<points4.size();i++){
-	for(int j=0;j<points5.size();j++){
-		for(int k=0;k<matchindex23.size();k++){
-			if (matchindex23[k].y == i){
-				if (points4[i]==points5[j]){
-					int x=i;
-					int y=j; 
-					matchindex45.push_back(Point(x,y));
-				}			
+		for (int k=0;k<mp_old.size();k++){
+			if (mp_old[k].point2==points3[i]){
+				for(int j=0;j<points5.size();j++){
+					if (points4[i]==points5[j]){
+						//cout <<"Mp_old point1 =   "<<mp_old[k].point2<<endl;
+						pointmatch a1;
+						a1.point1 = mp_old[k].point1;
+						a1.point2 = mp_old[k].point2;
+						a1.point3 = points5[j];
+						mp_new.push_back(a1);	
+					}
+				}
 			}
 		}
 	}
-    }
-
-    vector<Point> matchindex67;
-    for (int i=0;i<points6.size();i++){
-	for(int j=0;j<points7.size();j++){
-		for(int k=0;k<matchindex45.size();k++){
-			if (matchindex45[k].y == i){
-				if (points4[i]==points5[j]){
-					int x=i;
-					int y=j; 
-					matchindex67.push_back(Point(x,y));
-				}			
+ 				
+	mp_old.clear();
+	mp_old = mp_new;
+	mp_new.clear();
+	
+	for (int i=0;i<points6.size();i++){
+		for (int k=0;k<mp_old.size();k++){
+			if (mp_old[k].point3==points5[i]){
+				for(int j=0;j<points7.size();j++){
+					if (points6[i]==points7[j]){
+						//cout <<"Mp_old point1 =   "<<mp_old[k].point2<<endl;
+						pointmatch a1;
+						a1.point1 = mp_old[k].point1;
+						a1.point2 = mp_old[k].point2;
+						a1.point3 = mp_old[k].point3;
+						a1.point4 = points7[j];
+						mp_new.push_back(a1);	
+					}
+				}
 			}
 		}
 	}
-    }
+ 				
+	mp_old.clear();
+	mp_old = mp_new;
+	mp_new.clear();
+	
 
-    vector<Point> matchindex81;
-    for (int i=0;i<points8.size();i++){
-	for(int j=0;j<points1.size();j++){
-		for(int k=0;k<matchindex67.size();k++){
-			if (matchindex67[k].y == i){
-				if (points8[i]==points1[j]){
-					int x=i;
-					int y=j; 
-					matchindex81.push_back(Point(x,y));
-				}			
+	mp_new.clear();
+
+	for (int i=0;i<points8.size();i++){
+		for (int k=0;k<mp_old.size();k++){
+			if (mp_old[k].point4==points7[i]){
+				for(int j=0;j<points1.size();j++){
+					if (points8[i]==points1[j]){
+						//cout <<"Mp_old point1 =   "<<mp_old[k].point2<<endl;
+						pointmatch a1;
+						a1.point1 = points1[j];
+						a1.point2 = mp_old[k].point2;
+						a1.point3 = mp_old[k].point3;
+						a1.point4 = mp_old[k].point3;
+						mp_new.push_back(a1);	
+					}
+				}
 			}
 		}
 	}
-    }
 
-//	cout<<matchindex81<<endl<<" end"<<endl;
+	mp_old.clear();
+	
+	
+	
+	cout<< "No. of Matched Points ="<<mp_new.size()<<endl;
 
-/*
+	
+
 
     Mat check1=left_new.clone();
     Mat check2=left_old.clone();
     Mat check3=right_new.clone();
     Mat check4=right_old.clone();
+
+	for (int i=0;i<mp_new.size();i++){
+		circle(check1,mp_new[i].point1,3,Scalar(255,0,0),-1,8,0);
+		circle(check2,mp_new[i].point2,3,Scalar(255,0,0),-1,8,0);
+		circle(check3,mp_new[i].point3,3,Scalar(255,0,0),-1,8,0);
+		circle(check4,mp_new[i].point4,3,Scalar(255,0,0),-1,8,0);
+	}
+/*
+    for (int i=0;i<matchindex81.size();i++){
+	circle(check1,points1[matchindex81[i].y],3,Scalar(255,0,0),-1,8,0);
+	
+    }
+
+    vector<Point> newfound23;
+    for (int i=0;i<matchindex81.size();i++){
+    	for (int j=0;j<matchindex23.size();j++){
+		if (matchindex81[i].y==matchindex23[j].x){
+			circle(check2,points2[matchindex23[j].x],3,Scalar(255,0,0),-1,8,0);
+			newfound23.push_back(matchindex23[j]);
+		}
+    	}
+    }
+
+    cout << "81 size = "<< matchindex81.size()<<endl;
+    cout << "23 size = "<< newfound23.size()<<endl;
+    cout << "*********************"<<endl;
+*/
+
     resize(check1, check1, Size(0,0), 0.5, 0.5, CV_INTER_LINEAR );
     resize(check2, check2, Size(0,0), 0.5, 0.5, CV_INTER_LINEAR );
     resize(check3, check3, Size(0,0), 0.5, 0.5, CV_INTER_LINEAR );
     resize(check4, check4, Size(0,0), 0.5, 0.5, CV_INTER_LINEAR );
 
+    
 
-    Mat new_view(480,640, CV_8UC3);
+
+
+    Mat new_view(480,640, CV_8UC1);
     Mat lefttop2(new_view, Rect(0, 0, 320, 240));
     Mat leftbottom2(new_view, Rect(0, 240, 320,240));
     Mat righttop2(new_view, Rect(320, 0, 320,240));
@@ -685,11 +759,14 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager)
     putText( new_view, "Right(t)", Point((check1.size()).width+3, 0+20), 1,1,Scalar( 0, 0, 0 ), 1, 7,false);
     putText( new_view, "Left(t-1)", Point(0+3, (check1.size()).height+20), 1,1,Scalar( 0, 0, 0 ), 1, 7,false);
     putText( new_view, "Right(t-1)", Point((check1.size()).width+3, (check1.size()).height+20), 1,1,Scalar( 0, 0, 0 ), 1, 7,false);
-*/
 
-//    imshow("Features Found Again old",tmp2);
 
-    waitKey(2); //press any key to quit
+
+
+
+   imshow("Features Found Again",new_view);
+
+    waitKey(10); //press any key to quit
     
     }
     iteration++;
