@@ -1,5 +1,5 @@
-#include<vector>
-#include<math.h>
+#include <vector>
+#include <math.h>
 #include <ros/ros.h>
 #include <iomanip>
 #include <image_transport/image_transport.h>
@@ -32,33 +32,41 @@
 #include <opencv2/objdetect/objdetect.hpp>
 #include <opencv2/nonfree/nonfree.hpp>
 #include <opencv2/nonfree/features2d.hpp>
-#include "opencv2/stitching/stitcher.hpp"
+#include <image_geometry/stereo_camera_model.h>
+#include "stereo_func.cpp"
 
-float nndrRatio = 0.70f;
+
+// Define Namespace
 namespace enc = sensor_msgs::image_encodings;
 using namespace std;
 using namespace cv;
 using namespace sensor_msgs;
 using namespace message_filters;
+using namespace image_geometry;
+
+
+
+
+// Define Global Variables
+float nndrRatio = 0.70f;
 int der_x=1,der_y=1,kernel=1,value=1500,ratio=0.65f;
 Mat left_new,right_new;
 Mat left_old,right_old;
 int iteration=1;
 
 
-struct pointmatch{
-	public:
-		Point2f point1;
-		Point2f point2;
-		Point2f point3;
-		Point2f point4;
-		
-		//~ pointmatch () { };
-		//~ ~pointmatch ();
-		//~ 
-};
 
-void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager)
+
+
+/***************************************************************************************************************/
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				//Callback funtion at the time of data received//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/***************************************************************************************************************/
+
+void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, const CameraInfoConstPtr& l_info_msg,const CameraInfoConstPtr& r_info_msg)
 {
 
 	cv_bridge::CvImagePtr origl_img;
@@ -760,6 +768,11 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager)
     putText( new_view, "Left(t-1)", Point(0+3, (check1.size()).height+20), 1,1,Scalar( 0, 0, 0 ), 1, 7,false);
     putText( new_view, "Right(t-1)", Point((check1.size()).width+3, (check1.size()).height+20), 1,1,Scalar( 0, 0, 0 ), 1, 7,false);
 
+	StereoCameraModel model;
+	model.fromCameraInfo(*l_info_msg, *r_info_msg);
+	parameters params = getCameraparams(model);
+	vector<int> tatti=selectsample(6,3);
+	cout<< "*************************"<<endl;
 
 
 
@@ -816,10 +829,10 @@ int main(int argc, char** argv)
 	message_filters::Subscriber<sensor_msgs::CameraInfo>  caminfol_sub(nh,"/narrow_stereo_textured/left/camera_info", 1);
 	message_filters::Subscriber<sensor_msgs::CameraInfo>  caminfor_sub(nh,"/narrow_stereo_textured/right/camera_info", 1);*/
 
-	typedef sync_policies::ApproximateTime<Image,Image> MySyncPolicy;
+	typedef sync_policies::ApproximateTime<sensor_msgs::Image, sensor_msgs::Image, sensor_msgs::CameraInfo, sensor_msgs::CameraInfo> MySyncPolicy;
 	// ApproximateTime takes a queue size as its constructor argument, hence MySyncPolicy(10)
-	Synchronizer<MySyncPolicy> sync(MySyncPolicy(10), imagel_sub,imager_sub);
-	sync.registerCallback(boost::bind(&imageCallback, _1, _2));
+	Synchronizer<MySyncPolicy> sync(MySyncPolicy(10), imagel_sub,imager_sub,caminfol_sub,caminfor_sub);
+	sync.registerCallback(boost::bind(&imageCallback, _1, _2, _3, _4));
 //	image_transport::Subscriber imagemaskSub = it->subscribe   ("/riverdetector/visualization" , 1, maskimageCb);
 	while (ros::ok())
 	{

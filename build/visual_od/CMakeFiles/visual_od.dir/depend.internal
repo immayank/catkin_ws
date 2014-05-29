@@ -3,3 +3,5 @@
 
 visual_od/CMakeFiles/visual_od.dir/src/main.cpp.o
  /home/mayank/catkin_ws/src/visual_od/src/main.cpp
+ /home/mayank/catkin_ws/src/visual_od/src/stereo_func.cpp
+ /home/mayank/catkin_ws/src/visual_od/src/stereo_func.h
