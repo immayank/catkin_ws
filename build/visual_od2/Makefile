@@ -147,6 +147,20 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+visual_od2/CMakeFiles/libvisual.dir/rule:
+	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 visual_od2/CMakeFiles/libvisual.dir/rule
+.PHONY : visual_od2/CMakeFiles/libvisual.dir/rule
+
+# Convenience name for target.
+libvisual: visual_od2/CMakeFiles/libvisual.dir/rule
+.PHONY : libvisual
+
+# fast build rule for target.
+libvisual/fast:
+	cd /home/mayank/catkin_ws/build && $(MAKE) -f visual_od2/CMakeFiles/libvisual.dir/build.make visual_od2/CMakeFiles/libvisual.dir/build
+.PHONY : libvisual/fast
+
+# Convenience name for target.
 visual_od2/CMakeFiles/visual_od2.dir/rule:
 	cd /home/mayank/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 visual_od2/CMakeFiles/visual_od2.dir/rule
 .PHONY : visual_od2/CMakeFiles/visual_od2.dir/rule
@@ -184,6 +198,78 @@ src/main.cpp.s:
 	cd /home/mayank/catkin_ws/build && $(MAKE) -f visual_od2/CMakeFiles/visual_od2.dir/build.make visual_od2/CMakeFiles/visual_od2.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/matrix.o: src/matrix.cpp.o
+.PHONY : src/matrix.o
+
+# target to build an object file
+src/matrix.cpp.o:
+	cd /home/mayank/catkin_ws/build && $(MAKE) -f visual_od2/CMakeFiles/libvisual.dir/build.make visual_od2/CMakeFiles/libvisual.dir/src/matrix.cpp.o
+.PHONY : src/matrix.cpp.o
+
+src/matrix.i: src/matrix.cpp.i
+.PHONY : src/matrix.i
+
+# target to preprocess a source file
+src/matrix.cpp.i:
+	cd /home/mayank/catkin_ws/build && $(MAKE) -f visual_od2/CMakeFiles/libvisual.dir/build.make visual_od2/CMakeFiles/libvisual.dir/src/matrix.cpp.i
+.PHONY : src/matrix.cpp.i
+
+src/matrix.s: src/matrix.cpp.s
+.PHONY : src/matrix.s
+
+# target to generate assembly for a file
+src/matrix.cpp.s:
+	cd /home/mayank/catkin_ws/build && $(MAKE) -f visual_od2/CMakeFiles/libvisual.dir/build.make visual_od2/CMakeFiles/libvisual.dir/src/matrix.cpp.s
+.PHONY : src/matrix.cpp.s
+
+src/viso.o: src/viso.cpp.o
+.PHONY : src/viso.o
+
+# target to build an object file
+src/viso.cpp.o:
+	cd /home/mayank/catkin_ws/build && $(MAKE) -f visual_od2/CMakeFiles/libvisual.dir/build.make visual_od2/CMakeFiles/libvisual.dir/src/viso.cpp.o
+.PHONY : src/viso.cpp.o
+
+src/viso.i: src/viso.cpp.i
+.PHONY : src/viso.i
+
+# target to preprocess a source file
+src/viso.cpp.i:
+	cd /home/mayank/catkin_ws/build && $(MAKE) -f visual_od2/CMakeFiles/libvisual.dir/build.make visual_od2/CMakeFiles/libvisual.dir/src/viso.cpp.i
+.PHONY : src/viso.cpp.i
+
+src/viso.s: src/viso.cpp.s
+.PHONY : src/viso.s
+
+# target to generate assembly for a file
+src/viso.cpp.s:
+	cd /home/mayank/catkin_ws/build && $(MAKE) -f visual_od2/CMakeFiles/libvisual.dir/build.make visual_od2/CMakeFiles/libvisual.dir/src/viso.cpp.s
+.PHONY : src/viso.cpp.s
+
+src/viso_stereo.o: src/viso_stereo.cpp.o
+.PHONY : src/viso_stereo.o
+
+# target to build an object file
+src/viso_stereo.cpp.o:
+	cd /home/mayank/catkin_ws/build && $(MAKE) -f visual_od2/CMakeFiles/libvisual.dir/build.make visual_od2/CMakeFiles/libvisual.dir/src/viso_stereo.cpp.o
+.PHONY : src/viso_stereo.cpp.o
+
+src/viso_stereo.i: src/viso_stereo.cpp.i
+.PHONY : src/viso_stereo.i
+
+# target to preprocess a source file
+src/viso_stereo.cpp.i:
+	cd /home/mayank/catkin_ws/build && $(MAKE) -f visual_od2/CMakeFiles/libvisual.dir/build.make visual_od2/CMakeFiles/libvisual.dir/src/viso_stereo.cpp.i
+.PHONY : src/viso_stereo.cpp.i
+
+src/viso_stereo.s: src/viso_stereo.cpp.s
+.PHONY : src/viso_stereo.s
+
+# target to generate assembly for a file
+src/viso_stereo.cpp.s:
+	cd /home/mayank/catkin_ws/build && $(MAKE) -f visual_od2/CMakeFiles/libvisual.dir/build.make visual_od2/CMakeFiles/libvisual.dir/src/viso_stereo.cpp.s
+.PHONY : src/viso_stereo.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -194,6 +280,7 @@ help:
 	@echo "... install"
 	@echo "... install/local"
 	@echo "... install/strip"
+	@echo "... libvisual"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
@@ -201,6 +288,15 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/matrix.o"
+	@echo "... src/matrix.i"
+	@echo "... src/matrix.s"
+	@echo "... src/viso.o"
+	@echo "... src/viso.i"
+	@echo "... src/viso.s"
+	@echo "... src/viso_stereo.o"
+	@echo "... src/viso_stereo.i"
+	@echo "... src/viso_stereo.s"
 .PHONY : help
 
 

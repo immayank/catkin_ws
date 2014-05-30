@@ -3,10 +3,7 @@
 
 visual_od2/CMakeFiles/visual_od2.dir/src/main.cpp.o: /home/mayank/catkin_ws/src/visual_od2/src/main.cpp
 visual_od2/CMakeFiles/visual_od2.dir/src/main.cpp.o: /home/mayank/catkin_ws/src/visual_od2/src/matcher.h
-visual_od2/CMakeFiles/visual_od2.dir/src/main.cpp.o: /home/mayank/catkin_ws/src/visual_od2/src/matrix.cpp
 visual_od2/CMakeFiles/visual_od2.dir/src/main.cpp.o: /home/mayank/catkin_ws/src/visual_od2/src/matrix.h
-visual_od2/CMakeFiles/visual_od2.dir/src/main.cpp.o: /home/mayank/catkin_ws/src/visual_od2/src/viso.cpp
 visual_od2/CMakeFiles/visual_od2.dir/src/main.cpp.o: /home/mayank/catkin_ws/src/visual_od2/src/viso.h
-visual_od2/CMakeFiles/visual_od2.dir/src/main.cpp.o: /home/mayank/catkin_ws/src/visual_od2/src/viso_stereo.cpp
 visual_od2/CMakeFiles/visual_od2.dir/src/main.cpp.o: /home/mayank/catkin_ws/src/visual_od2/src/viso_stereo.h
 

@@ -1,8 +1,0 @@
-prefix=/home/mayank/catkin_ws/install
-
-Name: visuallib
-Description: Description of visuallib
-Version: 0.0.1
-Cflags: -I/home/mayank/catkin_ws/install/include
-Libs: -L/home/mayank/catkin_ws/install/lib -lvisualodometry
-Requires: 

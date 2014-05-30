@@ -77,6 +77,7 @@ visual_od2_OBJECTS = \
 visual_od2_EXTERNAL_OBJECTS =
 
 /home/mayank/catkin_ws/devel/lib/visual_od2/visual_od2: visual_od2/CMakeFiles/visual_od2.dir/src/main.cpp.o
+/home/mayank/catkin_ws/devel/lib/visual_od2/visual_od2: /home/mayank/catkin_ws/devel/lib/liblibvisual.so
 /home/mayank/catkin_ws/devel/lib/visual_od2/visual_od2: /opt/ros/hydro/lib/libcv_bridge.so
 /home/mayank/catkin_ws/devel/lib/visual_od2/visual_od2: /opt/ros/hydro/lib/libimage_transport.so
 /home/mayank/catkin_ws/devel/lib/visual_od2/visual_od2: /usr/lib/libtinyxml.so

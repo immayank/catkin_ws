@@ -1382,6 +1382,19 @@ visual_od/fast:
 .PHONY : visual_od/fast
 
 #=============================================================================
+# Target rules for targets named libvisual
+
+# Build rule for target.
+libvisual: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 libvisual
+.PHONY : libvisual
+
+# fast build rule for target.
+libvisual/fast:
+	$(MAKE) -f visual_od2/CMakeFiles/libvisual.dir/build.make visual_od2/CMakeFiles/libvisual.dir/build
+.PHONY : libvisual/fast
+
+#=============================================================================
 # Target rules for targets named visual_od2
 
 # Build rule for target.
@@ -1502,6 +1515,7 @@ help:
 	@echo "... viso2_ros_genlisp"
 	@echo "... viso2_ros_genpy"
 	@echo "... visual_od"
+	@echo "... libvisual"
 	@echo "... visual_od2"
 .PHONY : help
 

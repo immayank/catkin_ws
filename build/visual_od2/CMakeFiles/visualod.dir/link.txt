@@ -1,1 +1,0 @@
-/usr/bin/c++       CMakeFiles/visualod.dir/src/main.cpp.o  -o /home/mayank/catkin_ws/devel/lib/visual_od2/visualod -rdynamic 

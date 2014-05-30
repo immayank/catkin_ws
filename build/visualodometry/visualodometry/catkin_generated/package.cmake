@@ -1,7 +1,0 @@
-set(_CATKIN_CURRENT_PACKAGE "visualodometry")
-set(visualodometry_MAINTAINER "mayank <mayank@gmail.com>")
-set(visualodometry_DEPRECATED "")
-set(visualodometry_VERSION "0.0.1")
-set(visualodometry_BUILD_DEPENDS )
-set(visualodometry_RUN_DEPENDS "visuallib" "visualodometry_ros")
-set(visualodometry_BUILDTOOL_DEPENDS "catkin")

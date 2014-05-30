@@ -36,6 +36,7 @@
 /home/mayank/catkin_ws/build/gtest/CMakeFiles/gtest_main.dir
 /home/mayank/catkin_ws/build/camera_umd/jpeg_streamer/CMakeFiles/jpeg_streamer.dir
 /home/mayank/catkin_ws/build/fovis/libfovis/CMakeFiles/libfovis.dir
+/home/mayank/catkin_ws/build/visual_od2/CMakeFiles/libvisual.dir
 /home/mayank/catkin_ws/build/viso2/viso2_ros/CMakeFiles/mono_odometer.dir
 /home/mayank/catkin_ws/build/fovis/fovis_ros/CMakeFiles/nav_msgs_generate_messages_cpp.dir
 /home/mayank/catkin_ws/build/fovis/fovis_ros/CMakeFiles/nav_msgs_generate_messages_lisp.dir

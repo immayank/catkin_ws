@@ -91,8 +91,12 @@ catkin_package(
 # include_directories(include)
 
 ## Declare a cpp library
-#add_library(visual_od2
-#  )
+add_library(libvisual
+	src/matrix.cpp
+	src/viso.cpp
+	src/viso_stereo.cpp
+	
+  )
 
 ## Declare a cpp executable
  add_executable(visual_od2 src/main.cpp)
@@ -102,7 +106,7 @@ catkin_package(
 # add_dependencies(stereo_node stereo_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(visual_od2
+ target_link_libraries(visual_od2 libvisual
    ${catkin_LIBRARIES}
  )
 

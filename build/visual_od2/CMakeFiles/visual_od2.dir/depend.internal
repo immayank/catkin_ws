@@ -4,9 +4,6 @@
 visual_od2/CMakeFiles/visual_od2.dir/src/main.cpp.o
  /home/mayank/catkin_ws/src/visual_od2/src/main.cpp
  /home/mayank/catkin_ws/src/visual_od2/src/matcher.h
- /home/mayank/catkin_ws/src/visual_od2/src/matrix.cpp
  /home/mayank/catkin_ws/src/visual_od2/src/matrix.h
- /home/mayank/catkin_ws/src/visual_od2/src/viso.cpp
  /home/mayank/catkin_ws/src/visual_od2/src/viso.h
- /home/mayank/catkin_ws/src/visual_od2/src/viso_stereo.cpp
  /home/mayank/catkin_ws/src/visual_od2/src/viso_stereo.h

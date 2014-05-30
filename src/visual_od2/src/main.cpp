@@ -33,9 +33,9 @@
 #include <opencv2/nonfree/nonfree.hpp>
 #include <opencv2/nonfree/features2d.hpp>
 #include <image_geometry/stereo_camera_model.h>
-#include "viso_stereo.cpp"
-#include "matrix.cpp"
-#include "matcher.h"
+#include "viso_stereo.h"
+
+
 
 // Define Namespace
 namespace enc = sensor_msgs::image_encodings;
@@ -104,7 +104,14 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 	cvtColor(right_new, right_new, CV_BGR2GRAY);
 	
 	if (iteration>2){
-	     
+	ORB orb1(4000, 1.2f, 8, 31, 0, 2, 0, 31);
+	ORB orb2(4000, 1.2f, 8, 31, 0, 2, 0, 31);
+	ORB orb3(4000, 1.2f, 8, 31, 0, 2, 0, 31);
+	ORB orb4(4000, 1.2f, 8, 31, 0, 2, 0, 31);
+	//~ ORB orb1;
+	//~ ORB orb2;
+	//~ ORB orb3;
+	//~ ORB orb4;
 
 /***************************************************************************************************************/
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,7 +121,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /***************************************************************************************************************/
 
-    ORB orb1;
+    
     // Feature detection
     Mat descriptor1,descriptor2;
     vector<KeyPoint> keypoints1;
@@ -239,7 +246,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /***************************************************************************************************************/
 
-	 ORB orb2;
+	 
     // Feature detection
     Mat descriptor3,descriptor4;
     vector<KeyPoint> keypoints3;
@@ -361,7 +368,6 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /***************************************************************************************************************/
 
-	 ORB orb3;
     // Feature detection
     Mat descriptor5,descriptor6;
     vector<KeyPoint> keypoints5;
@@ -484,13 +490,12 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 /***************************************************************************************************************/
 
 
-	 ORB orb4;
-    // Feature detection
+     // Feature detection
     Mat descriptor7,descriptor8;
     vector<KeyPoint> keypoints7;
     vector<KeyPoint> keypoints8;
-    orb4(right_new,Mat(),keypoints7,descriptor7);
-    orb4(left_new,Mat(),keypoints8,descriptor8);
+    orb3(right_new,Mat(),keypoints7,descriptor7);
+    orb3(left_new,Mat(),keypoints8,descriptor8);
     
     
     // corresponded points
@@ -500,7 +505,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
  
 //
 	matcher4.knnMatch( descriptor7, descriptor8, matches7 ,2);
-	matcher4.knnMatch( descriptor8, descriptor7, matches8 ,2);
+	matcher4.knnMatch( descriptor8, descriptor7, matches8,2);
 
     // Symmetry test
     vector<DMatch> symMatches4;
@@ -548,8 +553,8 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
         points8.push_back(cv::Point2f(x,y));
     }
     // Compute F matrix using RANSAC
-    std::vector<uchar> inliers4(points8.size(),0);
-    if (points8.size()>0&&points8.size()>0){
+    std::vector<uchar> inliers4(points7.size(),0);
+    if (points7.size()>0&&points8.size()>0){
         cv::Mat fundamental4= cv::findFundamentalMat(cv::Mat(points7),cv::Mat(points8), // matching points
                                                     inliers4,       // match status (inlier or outlier)
                                                     CV_FM_RANSAC, // RANSAC method
@@ -712,7 +717,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 						a1.point1 = points1[j];
 						a1.point2 = mp_old[k].point2;
 						a1.point3 = mp_old[k].point3;
-						a1.point4 = mp_old[k].point3;
+						a1.point4 = mp_old[k].point4;
 						mp_new.push_back(a1);	
 					}
 				}
@@ -798,6 +803,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 	cout<< "*************************"<<endl;
 	Matcher::p_match matched;
 	vector<Matcher::p_match> p_matched;
+	if (mp_new.size()!=0){
 	for (int i = 0;i<int(mp_new.size());i++){
 		matched.u1p = mp_new[i].point2.x;
 		matched.v1p = mp_new[i].point2.x;
@@ -813,12 +819,14 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 	
   
   // init visual odometry
-	VisualOdometryStereo viso(params);
-	cout <<"value"<<viso.process(p_matched)<<endl;
+	
+		VisualOdometryStereo viso(params);
+		cout <<"value"<<viso.process(p_matched)<<endl;
 		Matrix output = viso.getMotion();
 		pose = pose * Matrix::inv(viso.getMotion());
-
-	 cout<< "pose = "<< output<<endl;
+		cout<< "pose = "<< output<<endl;
+	}
+	 
 	
    imshow("Features Found Again",new_view);
 

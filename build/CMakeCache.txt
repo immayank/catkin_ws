@@ -682,6 +682,9 @@ libviso2_DIR:PATH=/home/mayank/catkin_ws/devel/share/libviso2/cmake
 //Value Computed by CMake
 libviso2_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/viso2/libviso2
 
+//Dependencies for target
+libvisual_LIB_DEPENDS:STATIC=
+
 //The directory containing a CMake configuration file for message_filters.
 message_filters_DIR:PATH=/opt/ros/hydro/share/message_filters/cmake
 

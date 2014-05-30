@@ -1,5 +1,4 @@
 #include "viso_stereo.h"
-#include "viso.cpp"
 
 using namespace std;
 
