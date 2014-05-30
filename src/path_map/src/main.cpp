@@ -76,9 +76,9 @@ void callback2(const nav_msgs::Odometry cam_odom)
 	Point position1(posx_st,posy_st); 
 	
 	circle(path_st, (position1), 1, Scalar(255, 0, 0), -1, 8, 0);
-	imshow("View_st",path_st);
+	//~ imshow("View_st",path_st);
 	cout << cam_odom.pose.pose.position.x <<" " << cam_odom.pose.pose.position.y<<" "<<posz_st << "\n";	
-	cvWaitKey(2);
+	//~ cvWaitKey(2);
 	
 	//cout <<x.at(x.size()) << " "<<y.at(y.size())<<" "<<z.at(z.size())<<" "<<"\n";	
 	return;

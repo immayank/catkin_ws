@@ -1381,6 +1381,19 @@ visual_od/fast:
 	$(MAKE) -f visual_od/CMakeFiles/visual_od.dir/build.make visual_od/CMakeFiles/visual_od.dir/build
 .PHONY : visual_od/fast
 
+#=============================================================================
+# Target rules for targets named visual_od2
+
+# Build rule for target.
+visual_od2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 visual_od2
+.PHONY : visual_od2
+
+# fast build rule for target.
+visual_od2/fast:
+	$(MAKE) -f visual_od2/CMakeFiles/visual_od2.dir/build.make visual_od2/CMakeFiles/visual_od2.dir/build
+.PHONY : visual_od2/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1489,6 +1502,7 @@ help:
 	@echo "... viso2_ros_genlisp"
 	@echo "... viso2_ros_genpy"
 	@echo "... visual_od"
+	@echo "... visual_od2"
 .PHONY : help
 
 

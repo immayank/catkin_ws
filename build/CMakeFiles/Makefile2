@@ -1546,8 +1546,8 @@ clean: fovis/fovis_ros/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/c
 # Target rules for target fovis/fovis_ros/CMakeFiles/fovis_mono_depth_odometer.dir
 
 # All Build rule for target.
-fovis/fovis_ros/CMakeFiles/fovis_mono_depth_odometer.dir/all: fovis/libfovis/CMakeFiles/libfovis.dir/all
 fovis/fovis_ros/CMakeFiles/fovis_mono_depth_odometer.dir/all: fovis/fovis_ros/CMakeFiles/visualization.dir/all
+fovis/fovis_ros/CMakeFiles/fovis_mono_depth_odometer.dir/all: fovis/libfovis/CMakeFiles/libfovis.dir/all
 	$(MAKE) -f fovis/fovis_ros/CMakeFiles/fovis_mono_depth_odometer.dir/build.make fovis/fovis_ros/CMakeFiles/fovis_mono_depth_odometer.dir/depend
 	$(MAKE) -f fovis/fovis_ros/CMakeFiles/fovis_mono_depth_odometer.dir/build.make fovis/fovis_ros/CMakeFiles/fovis_mono_depth_odometer.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/mayank/catkin_ws/build/CMakeFiles  3
@@ -1613,9 +1613,9 @@ clean: fovis/fovis_ros/CMakeFiles/fovis_ros_gencpp.dir/clean
 # Target rules for target fovis/fovis_ros/CMakeFiles/fovis_ros_generate_messages.dir
 
 # All Build rule for target.
+fovis/fovis_ros/CMakeFiles/fovis_ros_generate_messages.dir/all: fovis/fovis_ros/CMakeFiles/fovis_ros_generate_messages_cpp.dir/all
 fovis/fovis_ros/CMakeFiles/fovis_ros_generate_messages.dir/all: fovis/fovis_ros/CMakeFiles/fovis_ros_generate_messages_py.dir/all
 fovis/fovis_ros/CMakeFiles/fovis_ros_generate_messages.dir/all: fovis/fovis_ros/CMakeFiles/fovis_ros_generate_messages_lisp.dir/all
-fovis/fovis_ros/CMakeFiles/fovis_ros_generate_messages.dir/all: fovis/fovis_ros/CMakeFiles/fovis_ros_generate_messages_cpp.dir/all
 	$(MAKE) -f fovis/fovis_ros/CMakeFiles/fovis_ros_generate_messages.dir/build.make fovis/fovis_ros/CMakeFiles/fovis_ros_generate_messages.dir/depend
 	$(MAKE) -f fovis/fovis_ros/CMakeFiles/fovis_ros_generate_messages.dir/build.make fovis/fovis_ros/CMakeFiles/fovis_ros_generate_messages.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/mayank/catkin_ws/build/CMakeFiles 
@@ -1805,8 +1805,8 @@ clean: fovis/fovis_ros/CMakeFiles/fovis_ros_genpy.dir/clean
 # Target rules for target fovis/fovis_ros/CMakeFiles/fovis_stereo_odometer.dir
 
 # All Build rule for target.
-fovis/fovis_ros/CMakeFiles/fovis_stereo_odometer.dir/all: fovis/libfovis/CMakeFiles/libfovis.dir/all
 fovis/fovis_ros/CMakeFiles/fovis_stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/visualization.dir/all
+fovis/fovis_ros/CMakeFiles/fovis_stereo_odometer.dir/all: fovis/libfovis/CMakeFiles/libfovis.dir/all
 	$(MAKE) -f fovis/fovis_ros/CMakeFiles/fovis_stereo_odometer.dir/build.make fovis/fovis_ros/CMakeFiles/fovis_stereo_odometer.dir/depend
 	$(MAKE) -f fovis/fovis_ros/CMakeFiles/fovis_stereo_odometer.dir/build.make fovis/fovis_ros/CMakeFiles/fovis_stereo_odometer.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/mayank/catkin_ws/build/CMakeFiles  8
@@ -2433,7 +2433,7 @@ clean: fovis/fovis_ros/CMakeFiles/topic_tools_generate_messages_py.dir/clean
 fovis/fovis_ros/CMakeFiles/visualization.dir/all:
 	$(MAKE) -f fovis/fovis_ros/CMakeFiles/visualization.dir/build.make fovis/fovis_ros/CMakeFiles/visualization.dir/depend
 	$(MAKE) -f fovis/fovis_ros/CMakeFiles/visualization.dir/build.make fovis/fovis_ros/CMakeFiles/visualization.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/mayank/catkin_ws/build/CMakeFiles  63
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/mayank/catkin_ws/build/CMakeFiles  64
 	@echo "Built target visualization"
 .PHONY : fovis/fovis_ros/CMakeFiles/visualization.dir/all
 
@@ -3054,56 +3054,56 @@ viso2/viso2_ros/preinstall:
 
 # All Build rule for target.
 viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
 viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/roscpp_generate_messages_lisp.dir/all
 viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/roscpp_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/nodelet_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/std_msgs_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
 viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
 viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/nodelet_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/nodelet_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/sensor_msgs_generate_messages_py.dir/all
 viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
 viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/bond_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/sensor_msgs_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/std_msgs_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/nodelet_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/nodelet_generate_messages_lisp.dir/all
 viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/bond_generate_messages_lisp.dir/all
 viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: gscam/CMakeFiles/bond_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/topic_tools_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/nav_msgs_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_msgs_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/nav_msgs_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: viso2/libviso2/CMakeFiles/viso2.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/nav_msgs_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/pcl_ros_gencfg.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf2_msgs_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/pcl_msgs_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/std_srvs_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/std_srvs_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/topic_tools_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/std_srvs_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/topic_tools_generate_messages_lisp.dir/all
 viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: viso2/viso2_ros/CMakeFiles/viso2_ros_gencpp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/nav_msgs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/nav_msgs_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/nav_msgs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_msgs_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/pcl_msgs_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf2_msgs_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/std_srvs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/std_srvs_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/std_srvs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/pcl_ros_gencfg.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: viso2/libviso2/CMakeFiles/viso2.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/topic_tools_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/topic_tools_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/mono_odometer.dir/all: fovis/fovis_ros/CMakeFiles/topic_tools_generate_messages_cpp.dir/all
 	$(MAKE) -f viso2/viso2_ros/CMakeFiles/mono_odometer.dir/build.make viso2/viso2_ros/CMakeFiles/mono_odometer.dir/depend
 	$(MAKE) -f viso2/viso2_ros/CMakeFiles/mono_odometer.dir/build.make viso2/viso2_ros/CMakeFiles/mono_odometer.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/mayank/catkin_ws/build/CMakeFiles  36
@@ -3139,56 +3139,56 @@ clean: viso2/viso2_ros/CMakeFiles/mono_odometer.dir/clean
 
 # All Build rule for target.
 viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
 viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/roscpp_generate_messages_lisp.dir/all
 viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/roscpp_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/nodelet_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/std_msgs_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
 viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
 viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/nodelet_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/nodelet_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/sensor_msgs_generate_messages_py.dir/all
 viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
 viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/bond_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/sensor_msgs_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/std_msgs_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/nodelet_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/nodelet_generate_messages_lisp.dir/all
 viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/bond_generate_messages_lisp.dir/all
 viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: gscam/CMakeFiles/bond_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/topic_tools_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/nav_msgs_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_msgs_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/nav_msgs_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: viso2/libviso2/CMakeFiles/viso2.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/nav_msgs_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/pcl_ros_gencfg.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf2_msgs_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/pcl_msgs_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/std_srvs_generate_messages_lisp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/std_srvs_generate_messages_cpp.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/topic_tools_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/std_srvs_generate_messages_py.dir/all
-viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/topic_tools_generate_messages_lisp.dir/all
 viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: viso2/viso2_ros/CMakeFiles/viso2_ros_gencpp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/nav_msgs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/nav_msgs_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/nav_msgs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_msgs_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/pcl_msgs_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/actionlib_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/tf2_msgs_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/std_srvs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/std_srvs_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/std_srvs_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/pcl_ros_gencfg.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: viso2/libviso2/CMakeFiles/viso2.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/topic_tools_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/topic_tools_generate_messages_py.dir/all
+viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/all: fovis/fovis_ros/CMakeFiles/topic_tools_generate_messages_cpp.dir/all
 	$(MAKE) -f viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/build.make viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/depend
 	$(MAKE) -f viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/build.make viso2/viso2_ros/CMakeFiles/stereo_odometer.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/mayank/catkin_ws/build/CMakeFiles  43
@@ -3254,9 +3254,9 @@ clean: viso2/viso2_ros/CMakeFiles/viso2_ros_gencpp.dir/clean
 # Target rules for target viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages.dir
 
 # All Build rule for target.
-viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages.dir/all: viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages_cpp.dir/all
 viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages.dir/all: viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages_py.dir/all
 viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages.dir/all: viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages_lisp.dir/all
+viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages.dir/all: viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages_cpp.dir/all
 	$(MAKE) -f viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages.dir/build.make viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages.dir/depend
 	$(MAKE) -f viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages.dir/build.make viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/mayank/catkin_ws/build/CMakeFiles 
@@ -3490,6 +3490,56 @@ visual_od/CMakeFiles/visual_od.dir/clean:
 
 # clean rule for target.
 clean: visual_od/CMakeFiles/visual_od.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory visual_od2
+
+# Convenience name for "all" pass in the directory.
+visual_od2/all: visual_od2/CMakeFiles/visual_od2.dir/all
+.PHONY : visual_od2/all
+
+# Convenience name for "clean" pass in the directory.
+visual_od2/clean: visual_od2/CMakeFiles/visual_od2.dir/clean
+.PHONY : visual_od2/clean
+
+# Convenience name for "preinstall" pass in the directory.
+visual_od2/preinstall:
+.PHONY : visual_od2/preinstall
+
+#=============================================================================
+# Target rules for target visual_od2/CMakeFiles/visual_od2.dir
+
+# All Build rule for target.
+visual_od2/CMakeFiles/visual_od2.dir/all:
+	$(MAKE) -f visual_od2/CMakeFiles/visual_od2.dir/build.make visual_od2/CMakeFiles/visual_od2.dir/depend
+	$(MAKE) -f visual_od2/CMakeFiles/visual_od2.dir/build.make visual_od2/CMakeFiles/visual_od2.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/mayank/catkin_ws/build/CMakeFiles  63
+	@echo "Built target visual_od2"
+.PHONY : visual_od2/CMakeFiles/visual_od2.dir/all
+
+# Include target in all.
+all: visual_od2/CMakeFiles/visual_od2.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+visual_od2/CMakeFiles/visual_od2.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mayank/catkin_ws/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 visual_od2/CMakeFiles/visual_od2.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mayank/catkin_ws/build/CMakeFiles 0
+.PHONY : visual_od2/CMakeFiles/visual_od2.dir/rule
+
+# Convenience name for target.
+visual_od2: visual_od2/CMakeFiles/visual_od2.dir/rule
+.PHONY : visual_od2
+
+# clean rule for target.
+visual_od2/CMakeFiles/visual_od2.dir/clean:
+	$(MAKE) -f visual_od2/CMakeFiles/visual_od2.dir/build.make visual_od2/CMakeFiles/visual_od2.dir/clean
+.PHONY : visual_od2/CMakeFiles/visual_od2.dir/clean
+
+# clean rule for target.
+clean: visual_od2/CMakeFiles/visual_od2.dir/clean
 .PHONY : clean
 
 #=============================================================================

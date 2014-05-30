@@ -99,6 +99,7 @@ IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   INCLUDE("/home/mayank/catkin_ws/build/viso2/viso2/cmake_install.cmake")
   INCLUDE("/home/mayank/catkin_ws/build/viso2/viso2_ros/cmake_install.cmake")
   INCLUDE("/home/mayank/catkin_ws/build/visual_od/cmake_install.cmake")
+  INCLUDE("/home/mayank/catkin_ws/build/visual_od2/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)
 

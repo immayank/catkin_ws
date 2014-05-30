@@ -1,0 +1,17 @@
+<launch>
+  
+  <node pkg="viso2_ros" type="stereo_odometer" name="stereo_odometer" output="screen">
+		<remap from="stereo" to="wide_stereo"/>
+		<remap from="image" to="image_rect"/>
+ </node>
+
+	<!-- Run the viso2_ros package -->
+	<node pkg="visual_od" type="visual_od" name="visual_od" output="screen">
+	</node>
+	
+	<node pkg="stereo" type="stereo" name="stereo" output="screen">
+	</node>
+
+	<node pkg="path_map" type="path_map" name="path_map" output="screen">
+	</node>
+</launch>

@@ -1,0 +1,8 @@
+prefix=/home/mayank/catkin_ws/devel
+
+Name: visual_od2
+Description: Description of visual_od2
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/mayank/catkin_ws/devel/lib 
+Requires: 

@@ -1,0 +1,8 @@
+prefix=/home/mayank/catkin_ws/devel
+
+Name: visuallib
+Description: Description of visuallib
+Version: 0.0.1
+Cflags: -I/home/mayank/catkin_ws/src/visualodometry/visuallib/visuallib/src
+Libs: -L/home/mayank/catkin_ws/devel/lib -lvisualodometry
+Requires: 

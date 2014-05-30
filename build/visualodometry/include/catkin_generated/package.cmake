@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "visuallib")
+set(visuallib_MAINTAINER "mayank <mayank@gmail.com>")
+set(visuallib_DEPRECATED "")
+set(visuallib_VERSION "0.0.1")
+set(visuallib_BUILD_DEPENDS )
+set(visuallib_RUN_DEPENDS )
+set(visuallib_BUILDTOOL_DEPENDS "catkin")

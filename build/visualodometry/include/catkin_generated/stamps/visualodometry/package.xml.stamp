@@ -1,0 +1,20 @@
+<package>
+  <name>visuallib</name>
+  <version>0.0.1</version>
+  <description>
+    visual odometry code
+  </description>
+
+ 
+ <maintainer email="mayank@gmail.com">mayank</maintainer>
+
+  <license>GPL</license>
+
+  <author>Andreas Geiger</author>
+ 
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+    <cpp lflags="-L${prefix}/lib -Wl,-rpath,${prefix}/lib -lviso2" cflags="-msse3 -I${prefix}/libviso2/src/"/>
+  </export>
+</package>

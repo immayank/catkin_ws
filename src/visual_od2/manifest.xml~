@@ -1,0 +1,14 @@
+<package>
+  <description brief="viusal_od">
+
+    visual_od
+
+  </description>
+  <author>Mayank</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/SIFT_feature</url>
+
+</package>
+
+

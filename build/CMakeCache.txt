@@ -821,6 +821,15 @@ viso2_ros_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/viso2/viso2_ros
 viso2_ros_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/viso2/viso2_ros
 
 //Value Computed by CMake
+visual_od2_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/visual_od2
+
+//Dependencies for the target
+visual_od2_LIB_DEPENDS:STATIC=general;/opt/ros/hydro/lib/libcv_bridge.so;general;/opt/ros/hydro/lib/libimage_transport.so;general;/usr/lib/libtinyxml.so;general;/opt/ros/hydro/lib/libclass_loader.so;general;/usr/lib/libPocoFoundation.so;general;/usr/lib/x86_64-linux-gnu/libdl.so;general;/opt/ros/hydro/lib/libroslib.so;general;/opt/ros/hydro/lib/libmessage_filters.so;general;/opt/ros/hydro/lib/libroscpp.so;general;/usr/lib/libboost_signals-mt.so;general;/usr/lib/libboost_filesystem-mt.so;general;/opt/ros/hydro/lib/libxmlrpcpp.so;general;/opt/ros/hydro/lib/librosconsole.so;general;/opt/ros/hydro/lib/librosconsole_log4cxx.so;general;/opt/ros/hydro/lib/librosconsole_backend_interface.so;general;/usr/lib/liblog4cxx.so;general;/usr/lib/libboost_regex-mt.so;general;/opt/ros/hydro/lib/libimage_geometry.so;debug;/opt/ros/hydro/lib/libopencv_calib3d.so;debug;/opt/ros/hydro/lib/libopencv_contrib.so;debug;/opt/ros/hydro/lib/libopencv_core.so;debug;/opt/ros/hydro/lib/libopencv_features2d.so;debug;/opt/ros/hydro/lib/libopencv_flann.so;debug;/opt/ros/hydro/lib/libopencv_gpu.so;debug;/opt/ros/hydro/lib/libopencv_highgui.so;debug;/opt/ros/hydro/lib/libopencv_imgproc.so;debug;/opt/ros/hydro/lib/libopencv_legacy.so;debug;/opt/ros/hydro/lib/libopencv_ml.so;debug;/opt/ros/hydro/lib/libopencv_nonfree.so;debug;/opt/ros/hydro/lib/libopencv_objdetect.so;debug;/opt/ros/hydro/lib/libopencv_photo.so;debug;/opt/ros/hydro/lib/libopencv_stitching.so;debug;/opt/ros/hydro/lib/libopencv_superres.so;debug;/opt/ros/hydro/lib/libopencv_video.so;debug;/opt/ros/hydro/lib/libopencv_videostab.so;optimized;/opt/ros/hydro/lib/libopencv_calib3d.so;optimized;/opt/ros/hydro/lib/libopencv_contrib.so;optimized;/opt/ros/hydro/lib/libopencv_core.so;optimized;/opt/ros/hydro/lib/libopencv_features2d.so;optimized;/opt/ros/hydro/lib/libopencv_flann.so;optimized;/opt/ros/hydro/lib/libopencv_gpu.so;optimized;/opt/ros/hydro/lib/libopencv_highgui.so;optimized;/opt/ros/hydro/lib/libopencv_imgproc.so;optimized;/opt/ros/hydro/lib/libopencv_legacy.so;optimized;/opt/ros/hydro/lib/libopencv_ml.so;optimized;/opt/ros/hydro/lib/libopencv_nonfree.so;optimized;/opt/ros/hydro/lib/libopencv_objdetect.so;optimized;/opt/ros/hydro/lib/libopencv_photo.so;optimized;/opt/ros/hydro/lib/libopencv_stitching.so;optimized;/opt/ros/hydro/lib/libopencv_superres.so;optimized;/opt/ros/hydro/lib/libopencv_video.so;optimized;/opt/ros/hydro/lib/libopencv_videostab.so;general;/opt/ros/hydro/lib/libroscpp_serialization.so;general;/opt/ros/hydro/lib/librostime.so;general;/usr/lib/libboost_date_time-mt.so;general;/usr/lib/libboost_system-mt.so;general;/usr/lib/libboost_thread-mt.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/opt/ros/hydro/lib/libcpp_common.so;general;/opt/ros/hydro/lib/libconsole_bridge.so;
+
+//Value Computed by CMake
+visual_od2_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/visual_od2
+
+//Value Computed by CMake
 visual_od_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/visual_od
 
 //Value Computed by CMake
@@ -828,6 +837,27 @@ visual_od_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/visual_od
 
 //Dependencies for target
 visualization_LIB_DEPENDS:STATIC=
+
+//Value Computed by CMake
+visuallib_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/visualodometry/visuallib
+
+//The directory containing a CMake configuration file for visuallib.
+visuallib_DIR:PATH=/home/mayank/catkin_ws/devel/share/visuallib/cmake
+
+//Value Computed by CMake
+visuallib_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/visualodometry/visuallib
+
+//Value Computed by CMake
+visualodometry_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/visualodometry/visualodometry
+
+//Value Computed by CMake
+visualodometry_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/visualodometry/visualodometry
+
+//Value Computed by CMake
+visualodometry_ros_BINARY_DIR:STATIC=/home/mayank/catkin_ws/build/visualodometry/visualodometry_ros
+
+//Value Computed by CMake
+visualodometry_ros_SOURCE_DIR:STATIC=/home/mayank/catkin_ws/src/visualodometry/visualodometry_ros
 
 //The directory containing a CMake configuration file for xmlrpcpp.
 xmlrpcpp_DIR:PATH=/opt/ros/hydro/share/xmlrpcpp/cmake
@@ -1000,7 +1030,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=16
+CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=17
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

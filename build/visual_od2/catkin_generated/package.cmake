@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "visual_od2")
+set(visual_od2_MAINTAINER "mayank <mayank@gmail.com>")
+set(visual_od2_DEPRECATED "")
+set(visual_od2_VERSION "0.0.0")
+set(visual_od2_BUILD_DEPENDS )
+set(visual_od2_RUN_DEPENDS )
+set(visual_od2_BUILDTOOL_DEPENDS "catkin" "roscpp" "std_msgs" "opencv2" "cv_bridge" "image_transport" "message_filters" "sensor_msgs")

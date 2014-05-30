@@ -71,14 +71,18 @@ parameters getCameraparams(StereoCameraModel model);
 
 vector<int> selectsample(int N,int p);
 
-void computeObservations(vector<pointmatch> p_matched,vector<int> active);
+void computeObservations(vector<pointmatch> &p_matched,vector<int> &active);
 
-void computeResidualsAndJacobian(vector<double> tr,vector<int> active);
+void computeResidualsAndJacobian(vector<double> &tr,vector<int> &active);
 
-result updateParameters(vector<pointmatch> p_matched,vector<int> active,vector<double> tr,double step_size,double eps);
+int updateParameters(vector<pointmatch> &p_matched,vector<int> &active,vector<double> &tr,double step_size,double eps);
 
-vector<int> getInlier(vector<pointmatch> p_matched,vector<double> tr);
+vector<int> getInlier(vector<pointmatch> &p_matched,vector<double> &tr);
 	
-vector<double> motionestimation(vector<pointmatch> mp,parameters param);
+vector<double> motionestimation(vector<pointmatch> mp);
+
+Matx44d transformVectorToMatrix(vector<double> tr);
+
+Matx44d updateMotion(vector<pointmatch> mp, parameters par1);
 
 #endif

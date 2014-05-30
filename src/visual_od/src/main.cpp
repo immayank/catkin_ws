@@ -52,7 +52,10 @@ float nndrRatio = 0.70f;
 int der_x=1,der_y=1,kernel=1,value=1500,ratio=0.65f;
 Mat left_new,right_new;
 Mat left_old,right_old;
+Mat left_orig_new,left_orig_old;
+Mat right_orig_new,right_orig_old;
 int iteration=1;
+Matx44d pose = Matx44d::eye();
 
 
 
@@ -77,6 +80,8 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 	cv::Mat left_new = origl_img->image;
 	cv::Mat right_new = origr_img->image;
 	Mat new_gray,disp,disp8_sgbm,disp8_sbm;
+	Mat left_orig_new = left_new;
+	Mat right_orig_new = left_new;
 	cvtColor(left_new, left_new, CV_BGR2GRAY);
 	cvtColor(right_new, right_new, CV_BGR2GRAY);
 	
@@ -205,7 +210,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
         }
     }
   Mat result1;	
-  drawMatches( left_new, keypoints1, left_old, keypoints2, outMatches, result1 );
+  drawMatches( left_orig_new, keypoints1, left_orig_old, keypoints2, outMatches, result1 );
 
 
 /***************************************************************************************************************/
@@ -328,7 +333,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
         }
     }
   Mat result2;	
-  drawMatches( left_old, keypoints3, right_old, keypoints4, outMatches2, result2 );
+  drawMatches( left_orig_old, keypoints3, right_orig_old, keypoints4, outMatches2, result2 );
 
 /***************************************************************************************************************/
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -450,7 +455,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
         }
     }
   Mat result3;	
-  drawMatches( right_old, keypoints5, right_new, keypoints6, outMatches3, result3 );
+  drawMatches( right_orig_old, keypoints5, right_orig_new, keypoints6, outMatches3, result3 );
 
 /***************************************************************************************************************/
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -573,7 +578,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
         }
     }
   Mat result4;	
-  drawMatches( right_new, keypoints7, left_new, keypoints8, outMatches4, result4 );
+  drawMatches( right_orig_new, keypoints7, left_orig_new, keypoints8, outMatches4, result4 );
 
 //
 
@@ -706,16 +711,18 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 	
 
 
-    Mat check1=left_new.clone();
-    Mat check2=left_old.clone();
-    Mat check3=right_new.clone();
-    Mat check4=right_old.clone();
-
+    Mat check1=left_orig_new.clone();
+    Mat check2=left_orig_old.clone();
+    Mat check3=right_orig_new.clone();
+    Mat check4=right_orig_old.clone();
+	RNG rng(12345);
+	
 	for (int i=0;i<mp_new.size();i++){
-		circle(check1,mp_new[i].point1,3,Scalar(255,0,0),-1,8,0);
-		circle(check2,mp_new[i].point2,3,Scalar(255,0,0),-1,8,0);
-		circle(check3,mp_new[i].point3,3,Scalar(255,0,0),-1,8,0);
-		circle(check4,mp_new[i].point4,3,Scalar(255,0,0),-1,8,0);
+		Scalar color(  rng.uniform(0,255),  rng.uniform(0,255),  rng.uniform(0,255) );
+		circle(check1,mp_new[i].point1,3,color,-1,8,0);
+		circle(check2,mp_new[i].point2,3,color,-1,8,0);
+		circle(check3,mp_new[i].point3,3,color,-1,8,0);
+		circle(check4,mp_new[i].point4,3,color,-1,8,0);
 	}
 /*
     for (int i=0;i<matchindex81.size();i++){
@@ -747,7 +754,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 
 
 
-    Mat new_view(480,640, CV_8UC1);
+    Mat new_view(480,640, CV_8UC3);
     Mat lefttop2(new_view, Rect(0, 0, 320, 240));
     Mat leftbottom2(new_view, Rect(0, 240, 320,240));
     Mat righttop2(new_view, Rect(320, 0, 320,240));
@@ -771,10 +778,16 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 	StereoCameraModel model;
 	model.fromCameraInfo(*l_info_msg, *r_info_msg);
 	parameters params = getCameraparams(model);
-	vector<int> tatti=selectsample(6,3);
+	
 	cout<< "*************************"<<endl;
-
-
+	//pose = pose;
+	//~ pose = pose*((updateMotion(mp_new,params)).inv());
+	//~ int size=int(mp_new.size());
+	//~ vector<int> active = selectsample(size,3);
+	//~ computeObservations(mp_new,active);
+	//~ vector<double> tr_delta_curr;
+	//~ tr_delta_curr.assign(6,0);
+	//~ computeResidualsAndJacobian(tr_delta_curr,active);
 
 
    imshow("Features Found Again",new_view);
@@ -785,6 +798,8 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
     iteration++;
     left_old=left_new.clone();
     right_old=right_new.clone();
+    left_orig_old=left_orig_new.clone();
+    right_orig_old=right_orig_new.clone();
  //   waitKey(2);
 	
     

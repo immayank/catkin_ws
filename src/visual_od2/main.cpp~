@@ -1,3 +1,6 @@
+
+#include<vector>
+#include<math.h>
 #include <ros/ros.h>
 #include <iomanip>
 #include <image_transport/image_transport.h>
@@ -23,80 +26,19 @@
 #include <message_filters/synchronizer.h>
 #include <message_filters/sync_policies/approximate_time.h>
 #include <sensor_msgs/Image.h>
-
-
+#include <opencv2/nonfree/nonfree.hpp>
+#include <opencv2/nonfree/features2d.hpp>
+#include <stdio.h>
+#include <opencv2/legacy/legacy.hpp>
+#include <opencv2/objdetect/objdetect.hpp>
+#include <opencv2/nonfree/nonfree.hpp>
+#include <opencv2/nonfree/features2d.hpp>
+float nndrRatio = 0.70f;
 namespace enc = sensor_msgs::image_encodings;
 using namespace std;
 using namespace cv;
 using namespace sensor_msgs;
 using namespace message_filters;
-
-#define MAX_COUNT 500
-image_transport::Publisher facepub;
-char rawWindow[] = "Raw Video";
-char opticalFlowWindow[] = "Optical Flow Window";
-char imageFileName[32];
-long imageIndex = 0;
-char keyPressed;
-Mat prev_left_gray;
-vector<Point2f> points1;
-vector<Point2f> points2;
-
-Point2f diff;
-vector<uchar> status;
-vector<float> err;
-
-RNG rng(12345);
-Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
-bool needToInit = true;
-
-int i, k;
-TermCriteria termcrit(CV_TERMCRIT_ITER | CV_TERMCRIT_EPS, 20, 0.03);
-Size subPixWinSize(10, 10), winSize(31, 31);
-double angle;
-
-
-Mat left_opflow(Mat left_gray, Mat prev_left_gray){
-		Mat opticalFlow;
-		left_gray.copyTo(opticalFlow);
-		if (needToInit)
-		{
-			goodFeaturesToTrack(left_gray, points1, MAX_COUNT, 0.01, 100, Mat(), 6, 0, 0.04);
-			needToInit = false;
-		}
-		else if (!points2.empty())
-		{
-//			cout << "\n\n\nCalculating  calcOpticalFlowPyrLK\n\n\n\n\n";
-			calcOpticalFlowPyrLK(prev_left_gray, left_gray, points2, points1, status, err, winSize, 3, termcrit, 0, 0.001);
-
-			for (i = k = 0; i < points2.size(); i++)
-			{
-				if ((points1[i].x - points2[i].x) > 0)
-				{
-					line(left_gray, points1[i], points2[i], Scalar(0, 0, 255), 1, 1, 0);
-					circle(left_gray, points1[i], 2, Scalar(255, 0, 0), 1, 1, 0);
-
-					line(opticalFlow, points1[i], points2[i], Scalar(0, 0, 255), 1, 1, 0);
-					circle(opticalFlow, points1[i], 1, Scalar(255, 0, 0), 1, 1, 0);
-				}
-				else
-				{
-					line(left_gray, points1[i], points2[i], Scalar(0, 255, 0), 1, 1, 0);
-					circle(left_gray, points1[i], 2, Scalar(255, 0, 0), 1, 1, 0);
-
-					line(opticalFlow, points1[i], points2[i], Scalar(0, 255, 0), 1, 1, 0);
-					circle(opticalFlow, points1[i], 1, Scalar(255, 0, 0), 1, 1, 0);
-				}
-				points1[k++] = points1[i];
-			}
-
-			goodFeaturesToTrack(left_gray, points1, MAX_COUNT, 0.01, 10, Mat(), 3, 0, 0.04);
-
-		}
-		std::swap(points2, points1);
-		points1.clear();
-	return (opticalFlow);
-}
 
 void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager)
 {
@@ -114,65 +56,108 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager)
 	cvtColor(right_img, right_gray, CV_BGR2GRAY);
 	
 
-// Stereo BM
-	StereoBM sbm;
-	sbm.state->SADWindowSize = 9;
-	sbm.state->numberOfDisparities = 112;
-	sbm.state->preFilterSize = 5;
-	sbm.state->preFilterCap = 61;
-	sbm.state->minDisparity = -39;
-	sbm.state->textureThreshold = 507;
-	sbm.state->uniquenessRatio = 0;
-	sbm.state->speckleWindowSize = 0;
-	sbm.state->speckleRange = 8;
-	sbm.state->disp12MaxDiff = 1;
-	sbm(left_gray, right_gray, disp);
-	normalize(disp, disp8_sbm, 0, 255, CV_MINMAX, CV_8U);
+// image read
+    Mat tmp = left_img;
+    Mat in  = right_img;
+ 
+    /* threshold      = 0.04;
+       edge_threshold = 10.0;
+       magnification  = 3.0;    */
+ 
+    // SIFT feature detector and feature extractor
+    //cv::SiftFeatureDetector detector( 0.05, 5.0 );
+    //cv::SiftDescriptorExtractor extractor( 3.0 );
+ 
+    // In case of SURF, you apply the below two lines
+    //cv::SurfFeatureDetector detector(1500);
+    //cv::SurfDescriptorExtractor extractor;
+   
+    //FAST feature detector 
+     cv::FastFeatureDetector detector(1500);
+     cv::FastDescriptorExtractor extractor;
+     
 
-// Stereo SGBM	
-	StereoSGBM sgbm;
-	sgbm.SADWindowSize = 5;
-	sgbm.numberOfDisparities = 192;
-	sgbm.preFilterCap = 4;
-	sgbm.minDisparity = -64;
-	sgbm.uniquenessRatio = 1;
-	sgbm.speckleWindowSize = 150;
-	sgbm.speckleRange = 2;
-	sgbm.disp12MaxDiff = 10;
-	sgbm.fullDP = false;
-	sgbm.P1 = 600;
-	sgbm.P2 = 2400;
-	sgbm(left_gray, right_gray, disp);
+    // Feature detection
+    vector<KeyPoint> keypoints1;
+    vector<KeyPoint> keypoints2;
+    detector.detect( tmp, keypoints1 );
+    detector.detect( in, keypoints2 );
+ 
+    // Feature display
+    Mat feat1,feat2;
+    drawKeypoints(tmp,keypoints1,feat1,Scalar(255, 255, 255),DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+    drawKeypoints(in,keypoints2,feat2,Scalar(255, 255, 255),DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+    imwrite( "feat1.bmp", feat1 );
+    imwrite( "feat2.bmp", feat2 );
+    int key1 = keypoints1.size();
+    int key2 = keypoints2.size();
+    printf("Keypoint1=%d \nKeypoint2=%d", key1, key2);
+ 
+    // Feature descriptor computation
+    Mat descriptor1,descriptor2;
+    extractor.compute( tmp, keypoints1, descriptor1 );
+    extractor.compute( in, keypoints2, descriptor2 );
+    /*int desc1 = descriptor1.size;
+    int desc2 = descriptor2.size;
+    printf("Descriptor1=%d \nDescriptor2=%d", desc1, desc2);*/
+ 
+    // corresponded points
+	vector< vector< DMatch >  > matches;
+ 
+    // L2 distance based matching. Brute Force Matching
+   // BFMatcher matcher(NORM_L1); 
+ 
+    // Flann-based matching
+    FlannBasedMatcher matcher;
+ 
+    // display of corresponding points
+    matcher.knnMatch( descriptor1, descriptor2, matches ,2);
+ 
+	vector< DMatch > good_matches;
+	good_matches.reserve(matches.size());  
+	   
+	for (size_t i = 0; i < matches.size(); ++i)
+	{ 
+	    if (matches[i].size() < 2)
+		        continue;
+	   
+	    const DMatch &m1 = matches[i][0];
+	    const DMatch &m2 = matches[i][1];
+		
+	    if(m1.distance <= nndrRatio * m2.distance)        
+	    good_matches.push_back(m1);     
+	}
 
-	normalize(disp, disp8_sgbm, 0, 255, CV_MINMAX, CV_8U);
-	
-	Mat visual_l = left_opflow(left_gray,prev_left_gray);
-	left_gray.copyTo(prev_left_gray);
-	
-	cv::imshow("left_img",left_img);	
-	cv::imshow("right_img",right_img);
-	cv::imshow("Disparitysbm",disp8_sbm);
-	cv::imshow("Disparitysgbm",disp8_sgbm);
-	imshow("View",visual_l);
-//	printf("Code works \n");
-	cvWaitKey(2);
-	return;
-	
-}
+	std::vector< Point2f >  obj;
+    std::vector< Point2f >  scene;
+ 
+    for( unsigned int i = 0; i < good_matches.size(); i++ )
+    {
+        //-- Get the keypoints from the good matches
+        obj.push_back( keypoints1[ good_matches[i].queryIdx ].pt );
+        scene.push_back( keypoints2[ good_matches[i].trainIdx ].pt );
+    }
+     
+    // matching result
+    Mat result;
+    drawMatches( tmp, keypoints1, in, keypoints2, matches, result );
+ 
+    // output file
+ //   imwrite( "result.bmp", result );
+ 
+    // display the result
+    namedWindow("SIFT", CV_WINDOW_AUTOSIZE );
+    imshow("SIFT", result);
+    waitKey(10); //press any key to quit
 
 
-
-void initialize_vars()
-	{
-	
-}
-
+}	
 
 int main(int argc, char** argv)
 {	
-	ros::init(argc, argv, "stereo");
+	ros::init(argc, argv, "feature_extract");
 	ros::NodeHandle nh;
-	initialize_vars();
+	
 	image_transport::ImageTransport *it   = new image_transport::ImageTransport(nh);
 
 // GsCam

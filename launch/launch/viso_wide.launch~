@@ -1,0 +1,11 @@
+<launch>
+<param name="/use_sim_time" value="true"/>
+	<!-- Run the viso2_ros package -->
+	<node pkg="viso2_ros" type="stereo_odometer" name="stereo_odometer" output="screen">
+		<remap from="stereo" to="wide_stereo"/>
+		<remap from="image" to="image_rect"/>
+	</node>
+	<!-- Run the viso2_ros package -->
+	<node pkg="visual_od2" type="visual_od2" name="image_output" output="screen">
+	</node>
+</launch>
