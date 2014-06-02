@@ -16,8 +16,8 @@ public:
     bool    reweighting;      // lower border weights (more robust to calibration errors)
     parameters () {
       base             = 1.0;
-      ransac_iters     = 200;
-      inlier_threshold = 4;
+      ransac_iters     = 100;
+      inlier_threshold = 8;
       reweighting      = true;
     }
   };

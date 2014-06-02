@@ -34,6 +34,11 @@
 #include <opencv2/nonfree/features2d.hpp>
 #include <image_geometry/stereo_camera_model.h>
 #include "viso_stereo.h"
+#include <nav_msgs/Odometry.h>
+#include <std_srvs/Empty.h>
+
+#include <tf/transform_listener.h>
+#include <tf/transform_broadcaster.h>
 
 
 
@@ -44,6 +49,7 @@ using namespace cv;
 using namespace sensor_msgs;
 using namespace message_filters;
 using namespace image_geometry;
+
 
 struct pointmatch{
 	public:
@@ -67,7 +73,14 @@ Mat left_old,right_old;
 int iteration=1;
 //Matx44d pose = Matx44d::eye();
 Matrix pose = Matrix::eye(4);
-  
+Matrix reference_motion = Matrix::eye(4);
+double ref_frame_motion_threshold = 5;
+int ref_frame_inlier_threshold = 100;
+int ref_frame_change_method=0;
+bool change_reference_frame = false;
+int iter123=1;
+tf::Transform integrated_pose;
+
   
 VisualOdometryStereo::parameters getCameraparams(StereoCameraModel model){
 	VisualOdometryStereo::parameters param;
@@ -77,10 +90,9 @@ VisualOdometryStereo::parameters getCameraparams(StereoCameraModel model){
 	param.base = model.baseline();
 	//~ cout << "CU =" << param.cu<<endl;
 	return param;
-} 
-
-
-
+}
+ 
+   
 /***************************************************************************************************************/
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,17 +114,28 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 	Mat new_gray,disp,disp8_sgbm,disp8_sbm;
 	cvtColor(left_new, left_new, CV_BGR2GRAY);
 	cvtColor(right_new, right_new, CV_BGR2GRAY);
+	StereoCameraModel model;
+	model.fromCameraInfo(*l_info_msg, *r_info_msg);
+	VisualOdometryStereo::parameters params = getCameraparams(model);
 	
 	if (iteration>2){
 	ORB orb1(4000, 1.2f, 8, 31, 0, 2, 0, 31);
 	ORB orb2(4000, 1.2f, 8, 31, 0, 2, 0, 31);
 	ORB orb3(4000, 1.2f, 8, 31, 0, 2, 0, 31);
 	ORB orb4(4000, 1.2f, 8, 31, 0, 2, 0, 31);
+	ORB orb5(4000, 1.2f, 8, 31, 0, 2, 0, 31);
+	ORB orb6(4000, 1.2f, 8, 31, 0, 2, 0, 31);
+	ORB orb7(4000, 1.2f, 8, 31, 0, 2, 0, 31);
+	ORB orb8(4000, 1.2f, 8, 31, 0, 2, 0, 31);
 	//~ ORB orb1;
 	//~ ORB orb2;
 	//~ ORB orb3;
 	//~ ORB orb4;
-
+	
+	//~ SIFT orb1;
+	//~ SIFT orb2;
+	//~ SIFT orb3;
+	//~ SIFT orb4;
 /***************************************************************************************************************/
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -127,7 +150,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
     vector<KeyPoint> keypoints1;
     vector<KeyPoint> keypoints2;
     orb1(left_new,Mat(),keypoints1,descriptor1);
-    orb1(left_old,Mat(),keypoints2,descriptor2);
+    orb2(left_old,Mat(),keypoints2,descriptor2);
     
     
     // corresponded points
@@ -251,8 +274,8 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
     Mat descriptor3,descriptor4;
     vector<KeyPoint> keypoints3;
     vector<KeyPoint> keypoints4;
-    orb2(left_old,Mat(),keypoints3,descriptor3);
-    orb2(right_old,Mat(),keypoints4,descriptor4);
+    orb3(left_old,Mat(),keypoints3,descriptor3);
+    orb4(right_old,Mat(),keypoints4,descriptor4);
     
     
     // corresponded points
@@ -372,8 +395,8 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
     Mat descriptor5,descriptor6;
     vector<KeyPoint> keypoints5;
     vector<KeyPoint> keypoints6;
-    orb3(right_old,Mat(),keypoints5,descriptor5);
-    orb3(right_new,Mat(),keypoints6,descriptor6);
+    orb5(right_old,Mat(),keypoints5,descriptor5);
+    orb6(right_new,Mat(),keypoints6,descriptor6);
     
     
     // corresponded points
@@ -494,8 +517,8 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
     Mat descriptor7,descriptor8;
     vector<KeyPoint> keypoints7;
     vector<KeyPoint> keypoints8;
-    orb3(right_new,Mat(),keypoints7,descriptor7);
-    orb3(left_new,Mat(),keypoints8,descriptor8);
+    orb7(right_new,Mat(),keypoints7,descriptor7);
+    orb8(left_new,Mat(),keypoints8,descriptor8);
     
     
     // corresponded points
@@ -534,7 +557,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 		        break; // next match in image 1 -> image 2
 		    }
 		}
-	    }
+	   }
 
 	std::vector<cv::DMatch> outMatches4;
 	std::vector<cv::Point2f> points7;	
@@ -566,7 +589,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
         itIn= inliers4.begin();
         std::vector<cv::DMatch>::const_iterator
         itM= symMatches4.begin();
-	bool refineF = true;
+		bool refineF = true;
         // for all matches
         for ( ;itIn!= inliers4.end(); ++itIn, ++itM) {
             if (*itIn) { // it is a valid match
@@ -739,12 +762,12 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
     Mat check3=right_new.clone();
     Mat check4=right_old.clone();
 
-	//~ for (int i=0;i<mp_new.size();i++){
-		circle(check1,mp_new[5].point1,3,Scalar(255,0,0),-1,8,0);
-		circle(check2,mp_new[5].point2,3,Scalar(255,0,0),-1,8,0);
-		circle(check3,mp_new[5].point3,3,Scalar(255,0,0),-1,8,0);
-		circle(check4,mp_new[5].point4,3,Scalar(255,0,0),-1,8,0);
-	//~ }
+	for (int i=0;i<mp_new.size();i++){
+		circle(check1,mp_new[i].point1,3,Scalar(255,0,0),-1,8,0);
+		circle(check2,mp_new[i].point2,3,Scalar(255,0,0),-1,8,0);
+		circle(check3,mp_new[i].point3,3,Scalar(255,0,0),-1,8,0);
+		circle(check4,mp_new[i].point4,3,Scalar(255,0,0),-1,8,0);
+	 }
 /*
     for (int i=0;i<matchindex81.size();i++){
 	circle(check1,points1[matchindex81[i].y],3,Scalar(255,0,0),-1,8,0);
@@ -774,7 +797,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
     
 
 
-
+	
     Mat new_view(480,640, CV_8UC1);
     Mat lefttop2(new_view, Rect(0, 0, 320, 240));
     Mat leftbottom2(new_view, Rect(0, 240, 320,240));
@@ -796,39 +819,130 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
     putText( new_view, "Left(t-1)", Point(0+3, (check1.size()).height+20), 1,1,Scalar( 0, 0, 0 ), 1, 7,false);
     putText( new_view, "Right(t-1)", Point((check1.size()).width+3, (check1.size()).height+20), 1,1,Scalar( 0, 0, 0 ), 1, 7,false);
 
-	StereoCameraModel model;
-	model.fromCameraInfo(*l_info_msg, *r_info_msg);
-	VisualOdometryStereo::parameters params = getCameraparams(model);
+	
 	
 	cout<< "*************************"<<endl;
 	Matcher::p_match matched;
 	vector<Matcher::p_match> p_matched;
 	if (mp_new.size()!=0){
-	for (int i = 0;i<int(mp_new.size());i++){
-		matched.u1p = mp_new[i].point2.x;
-		matched.v1p = mp_new[i].point2.x;
-		matched.u2p = mp_new[i].point3.x;
-		matched.v2p = mp_new[i].point3.x;
-		matched.u1c = mp_new[i].point1.x;
-		matched.v1c = mp_new[i].point1.x;
-		matched.u2c = mp_new[i].point4.x;
-		matched.v2c = mp_new[i].point4.x;
-		p_matched.push_back(matched);
+		for (int i = 0;i<int(mp_new.size());i++){
+			matched.u1p = mp_new[i].point2.x;
+			matched.v1p = mp_new[i].point2.x;
+			matched.u2p = mp_new[i].point3.x;
+			matched.v2p = mp_new[i].point3.x;
+			matched.u1c = mp_new[i].point1.x;
+			matched.v1c = mp_new[i].point1.x;
+			matched.u2c = mp_new[i].point4.x;
+			matched.v2c = mp_new[i].point4.x;
+			p_matched.push_back(matched);
+		}
 	}
 	
-	
-  
-  // init visual odometry
-	
-		VisualOdometryStereo viso(params);
-		cout <<"value"<<viso.process(p_matched)<<endl;
-		Matrix output = viso.getMotion();
-		pose = pose * Matrix::inv(viso.getMotion());
-		cout<< "pose = "<< output<<endl;
+
+	/*********************************************************************************************************/
+
+	VisualOdometryStereo viso(params);
+	bool success = viso.process(p_matched);
+    nav_msgs::Odometry odometry_msg;
+    
+    Matrix camera_motion;
+    if (success){
+		Matrix motion = Matrix::inv(viso.getMotion());
+		if (change_reference_frame){
+			camera_motion = Matrix::inv(reference_motion) * motion;
+			}
+		else{
+			camera_motion = motion;
+		}
+		reference_motion = motion;
+		tf::Matrix3x3 rot_mat(
+        camera_motion.val[0][0], camera_motion.val[0][1], camera_motion.val[0][2],
+        camera_motion.val[1][0], camera_motion.val[1][1], camera_motion.val[1][2],
+        camera_motion.val[2][0], camera_motion.val[2][1], camera_motion.val[2][2]);
+        tf::Vector3 t(camera_motion.val[0][3], camera_motion.val[1][3], camera_motion.val[2][3]);
+        tf::Transform delta_transform(rot_mat, t);
+		
+		
+		ros::Time time_stamp = l_info_msg->header.stamp;
+		if (iter123==1){ 
+			integrated_pose.setIdentity();
+			iter123=123;
+			}
+		
+	    integrated_pose *= delta_transform;
+		tf::StampedTransform base_to_sensor;
+		std::string error_msg;
+		
+		ros::NodeHandle local_nh("~");
+		string sensor_frame_id;
+		tf::TransformListener tf_listener;
+		string base_link_frame_id;
+		local_nh.param("sensor_frame_id", sensor_frame_id, std::string("/camera"));
+		local_nh.param("base_link_frame_id", base_link_frame_id, std::string("/base_link"));
+		
+		if (tf_listener.canTransform(base_link_frame_id, sensor_frame_id, time_stamp, &error_msg))
+		{
+			tf_listener.lookupTransform(
+			  base_link_frame_id,
+			  sensor_frame_id,
+			  time_stamp, base_to_sensor);
+		}
+		else
+			{
+			  ROS_WARN_THROTTLE(10.0, "The tf from '%s' to '%s' does not seem to be available, "
+									  "will assume it as identity!", 
+									  base_link_frame_id.c_str(),
+									  sensor_frame_id.c_str());
+			  ROS_DEBUG("Transform error: %s", error_msg.c_str());
+			  base_to_sensor.setIdentity();
+		}
+		
+		tf::Transform base_transform = base_to_sensor * integrated_pose * base_to_sensor.inverse();
+		
+		odometry_msg.header.stamp = time_stamp;
+		tf::poseTFToMsg(base_transform, odometry_msg.pose.pose);
+		cout << odometry_msg.pose.pose.position.x;
+		ofstream outfile;
+		outfile.open("/home/mayank/mycode_sample_first_run.txt", std::ios_base::app);
+		outfile <<odometry_msg.pose.pose.position.x<< "\t"<<odometry_msg.pose.pose.position.y<<"\t"<<odometry_msg.pose.pose.position.z<<"\n";
+		//integrateAndPublish(delta_transform, l_image_msg->header.stamp);
 	}
 	 
+	 
 	
-   imshow("Features Found Again",new_view);
+	if(success)
+      {
+       switch ( ref_frame_change_method)
+		{
+          case 1:
+          {
+            double total_flow = 0.0;
+			for (size_t i = 0; i < p_matched.size(); ++i)
+			{
+			  double x_diff = p_matched[i].u1c - p_matched[i].u1p;
+			  double y_diff = p_matched[i].v1c - p_matched[i].v1p;
+			  total_flow += sqrt(x_diff * x_diff + y_diff * y_diff);
+			}
+			double feature_flow = total_flow / p_matched.size();
+            change_reference_frame = (feature_flow < ref_frame_motion_threshold);
+            break;
+          }
+          case 2:
+          {
+            change_reference_frame = (viso.getNumberOfInliers() > ref_frame_inlier_threshold);
+            break;
+          }            
+          default:
+            change_reference_frame = false;
+        }
+        
+      }
+	
+	else
+		change_reference_frame = false;
+	
+	
+	imshow("Features Found Again",new_view);
 
     waitKey(10); //press any key to quit
     
@@ -879,6 +993,12 @@ int main(int argc, char** argv)
 	message_filters::Subscriber<Image> imager_sub(nh, "/narrow_stereo_textured/right/image_raw", 1);
 	message_filters::Subscriber<sensor_msgs::CameraInfo>  caminfol_sub(nh,"/narrow_stereo_textured/left/camera_info", 1);
 	message_filters::Subscriber<sensor_msgs::CameraInfo>  caminfor_sub(nh,"/narrow_stereo_textured/right/camera_info", 1);*/
+	
+// Kitti Database
+	/*message_filters::Subscriber<Image> imagel_sub(nh, "/kitti_stereo/left/image_rect", 1);
+	message_filters::Subscriber<Image> imager_sub(nh, "/kitti_stereo/right/image_rect", 1);
+	message_filters::Subscriber<sensor_msgs::CameraInfo>  caminfol_sub(nh,"/kitti_stereo/left/camera_info", 1);
+	message_filters::Subscriber<sensor_msgs::CameraInfo>  caminfor_sub(nh,"/kitti_stereo/right/camera_info", 1);*/
 
 	typedef sync_policies::ApproximateTime<sensor_msgs::Image, sensor_msgs::Image, sensor_msgs::CameraInfo, sensor_msgs::CameraInfo> MySyncPolicy;
 	// ApproximateTime takes a queue size as its constructor argument, hence MySyncPolicy(10)

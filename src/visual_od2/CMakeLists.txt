@@ -4,7 +4,7 @@ project(visual_od2)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED roscpp std_msgs cv_bridge image_transport message_filters sensor_msgs nav_msgs image_geometry)
+find_package(catkin REQUIRED roscpp std_msgs cv_bridge image_transport message_filters sensor_msgs nav_msgs image_geometry  tf pcl_ros std_srvs message_generation)
 
 ## System dependencies are found with CMake's conventions
 find_package(Boost REQUIRED COMPONENTS thread)
@@ -39,6 +39,7 @@ find_package(Boost REQUIRED COMPONENTS thread)
 ##   * uncomment the generate_messages entry below
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
+add_message_files( DIRECTORY msg FILES VisoInfo.msg)
 ## Generate messages in the 'msg' folder
 # add_message_files(
 #   FILES
