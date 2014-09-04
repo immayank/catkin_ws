@@ -66,9 +66,16 @@ void callback1(const nav_msgs::Odometry base_odom)
 
 void callback2(const nav_msgs::Odometry cam_odom)
 {
-	ofstream outfile;
-	outfile.open("/home/mayank/path.txt", std::ios_base::app);
-	outfile <<cam_odom.pose.pose.position.x<< "\t"<<cam_odom.pose.pose.position.y<<"\t"<<cam_odom.pose.pose.position.z<<"\n";
+	double x = cam_odom.pose.pose.position.x;
+	double y = cam_odom.pose.pose.position.y;
+	double z = cam_odom.pose.pose.position.z;
+	
+	if (x==0 && y==0 && z==0){}
+	else{
+		ofstream outfile;
+		outfile.open("/home/mayank/path.txt", std::ios_base::app);
+		outfile <<cam_odom.pose.pose.position.x<< "\t"<<cam_odom.pose.pose.position.y<<"\t"<<cam_odom.pose.pose.position.z<<"\n";
+	}
 	double posx_st = 6*cam_odom.pose.pose.position.x+150;
 	double posy_st = 6*cam_odom.pose.pose.position.y+200;
 	double posz_st = cam_odom.pose.pose.position.z;	

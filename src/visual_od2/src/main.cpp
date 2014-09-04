@@ -36,10 +36,11 @@
 #include "viso_stereo.h"
 #include <nav_msgs/Odometry.h>
 #include <std_srvs/Empty.h>
-
 #include <tf/transform_listener.h>
 #include <tf/transform_broadcaster.h>
-
+#include <ctime>
+#include <sys/stat.h>
+#include <sstream>
 
 
 // Define Namespace
@@ -80,7 +81,9 @@ int ref_frame_change_method=0;
 bool change_reference_frame = false;
 int iter123=1;
 tf::Transform integrated_pose;
-
+char* dt;
+string filename1;
+string filename2;
   
 VisualOdometryStereo::parameters getCameraparams(StereoCameraModel model){
 	VisualOdometryStereo::parameters param;
@@ -665,11 +668,19 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
     vector<pointmatch> mp_old;
 
 
-// Finding all matched points
+/***************************************************************************************************************/
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// Finding all matched points//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/***************************************************************************************************************/
+
+// Left(t-1) and Right(t-1)
 
     for (int i=0;i<points2.size();i++){
 		for(int j=0;j<points3.size();j++){
-			if (points2[i]==points3[j]){
+			if (int(points2[i].x)==int(points3[j].x) && int(points2[i].y)==int(points3[j].y)){
 				pointmatch a1;
 				a1.point1 = points1[i];
 				a1.point2 = points2[i];
@@ -686,9 +697,9 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 	
     for (int i=0;i<points4.size();i++){
 		for (int k=0;k<mp_old.size();k++){
-			if (mp_old[k].point2==points3[i]){
+			if (int(mp_old[k].point2.x)==int(points3[i].x) && int(mp_old[k].point2.y)==int(points3[i].y)){
 				for(int j=0;j<points5.size();j++){
-					if (points4[i]==points5[j]){
+					if (int(points4[i].x)==int(points5[j].x) && int(points4[i].y)==int(points5[j].y)){
 						//cout <<"Mp_old point1 =   "<<mp_old[k].point2<<endl;
 						pointmatch a1;
 						a1.point1 = mp_old[k].point1;
@@ -707,9 +718,9 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 	
 	for (int i=0;i<points6.size();i++){
 		for (int k=0;k<mp_old.size();k++){
-			if (mp_old[k].point3==points5[i]){
+			if (int(mp_old[k].point3.x)==int(points5[i].x) && int(mp_old[k].point3.y)==int(points5[i].y)){
 				for(int j=0;j<points7.size();j++){
-					if (points6[i]==points7[j]){
+					if (int(points6[i].x)==int(points7[j].x) && int(points6[i].y)==int(points7[j].y)){
 						//cout <<"Mp_old point1 =   "<<mp_old[k].point2<<endl;
 						pointmatch a1;
 						a1.point1 = mp_old[k].point1;
@@ -732,9 +743,9 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 
 	for (int i=0;i<points8.size();i++){
 		for (int k=0;k<mp_old.size();k++){
-			if (mp_old[k].point4==points7[i]){
+			if (int(mp_old[k].point4.x)==int(points7[i].x) && int(mp_old[k].point4.y)==int(points7[i].y)){
 				for(int j=0;j<points1.size();j++){
-					if (points8[i]==points1[j]){
+					if (int(points8[i].x)==int(points1[j].x) && int(points8[i].y)==int(points1[j].y)){
 						//cout <<"Mp_old point1 =   "<<mp_old[k].point2<<endl;
 						pointmatch a1;
 						a1.point1 = points1[j];
@@ -749,7 +760,10 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 	}
 
 	mp_old.clear();
-	
+
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////	
 	
 	
 	cout<< "No. of Matched Points ="<<mp_new.size()<<endl;
@@ -759,8 +773,8 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 
     Mat check1=left_new.clone();
     Mat check2=left_old.clone();
-    Mat check3=right_new.clone();
-    Mat check4=right_old.clone();
+    Mat check3=right_old.clone();
+    Mat check4=right_new.clone();
 
 	for (int i=0;i<mp_new.size();i++){
 		circle(check1,mp_new[i].point1,3,Scalar(255,0,0),-1,8,0);
@@ -844,6 +858,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 	VisualOdometryStereo viso(params);
 	bool success = viso.process(p_matched);
     nav_msgs::Odometry odometry_msg;
+    nav_msgs::Odometry odometry_msg1;
     
     Matrix camera_motion;
     if (success){
@@ -870,6 +885,7 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 			}
 		
 	    integrated_pose *= delta_transform;
+	    
 		tf::StampedTransform base_to_sensor;
 		std::string error_msg;
 		
@@ -895,16 +911,26 @@ void imageCallback(const ImageConstPtr& imagel,const ImageConstPtr& imager, cons
 									  sensor_frame_id.c_str());
 			  ROS_DEBUG("Transform error: %s", error_msg.c_str());
 			  base_to_sensor.setIdentity();
+			  
 		}
 		
 		tf::Transform base_transform = base_to_sensor * integrated_pose * base_to_sensor.inverse();
+		base_to_sensor.setIdentity();
+		tf::Transform base_transform1 = base_to_sensor * integrated_pose * base_to_sensor.inverse();
 		
 		odometry_msg.header.stamp = time_stamp;
+		odometry_msg1.header.stamp = time_stamp;
 		tf::poseTFToMsg(base_transform, odometry_msg.pose.pose);
+		tf::poseTFToMsg(base_transform1, odometry_msg1.pose.pose);
 		cout << odometry_msg.pose.pose.position.x;
-		ofstream outfile;
-		outfile.open("/home/mayank/mycode_sample_first_run.txt", std::ios_base::app);
-		outfile <<odometry_msg.pose.pose.position.x<< "\t"<<odometry_msg.pose.pose.position.y<<"\t"<<odometry_msg.pose.pose.position.z<<"\n";
+		ofstream outfile1;
+		const char * c = filename1.c_str();
+		outfile1.open(c, std::ios_base::app);
+		outfile1 <<odometry_msg.pose.pose.position.x<< "\t"<<odometry_msg.pose.pose.position.y<<"\t"<<odometry_msg.pose.pose.position.z<<"\n";
+		ofstream outfile2;
+		const char * c2 = filename2.c_str();
+		outfile2.open(c2, std::ios_base::app);
+		outfile2 <<odometry_msg1.pose.pose.position.x<< "\t"<<odometry_msg1.pose.pose.position.y<<"\t"<<odometry_msg1.pose.pose.position.z<<"\n";
 		//integrateAndPublish(delta_transform, l_image_msg->header.stamp);
 	}
 	 
@@ -961,7 +987,16 @@ int main(int argc, char** argv)
 {	
 	ros::init(argc, argv, "feature_extract");
 	ros::NodeHandle nh;
-	
+	time_t now = time(0);
+	dt = ctime(&now);
+	filename1.append("/home/mayank/paths/");
+	filename2.append("/home/mayank/paths/");
+	filename1.append("withtransform_");
+	filename2.append("withouttransform_");
+	filename1.append(dt);
+	filename2.append(dt);
+	filename1.append(".txt");
+	filename2.append(".txt");
 	image_transport::ImageTransport *it   = new image_transport::ImageTransport(nh);
 
 // GsCam
@@ -1000,6 +1035,12 @@ int main(int argc, char** argv)
 	message_filters::Subscriber<sensor_msgs::CameraInfo>  caminfol_sub(nh,"/kitti_stereo/left/camera_info", 1);
 	message_filters::Subscriber<sensor_msgs::CameraInfo>  caminfor_sub(nh,"/kitti_stereo/right/camera_info", 1);*/
 
+// Camera_own
+	/*message_filters::Subscriber<Image> imagel_sub(nh, "/stereo/left/image_raw", 1);
+	message_filters::Subscriber<Image> imager_sub(nh, "/stereo/right/image_raw", 1);
+	message_filters::Subscriber<sensor_msgs::CameraInfo>  caminfol_sub(nh,"/stereo/left/camera_info", 1);
+	message_filters::Subscriber<sensor_msgs::CameraInfo>  caminfor_sub(nh,"/stereo/right/camera_info", 1);*/
+	
 	typedef sync_policies::ApproximateTime<sensor_msgs::Image, sensor_msgs::Image, sensor_msgs::CameraInfo, sensor_msgs::CameraInfo> MySyncPolicy;
 	// ApproximateTime takes a queue size as its constructor argument, hence MySyncPolicy(10)
 	Synchronizer<MySyncPolicy> sync(MySyncPolicy(10), imagel_sub,imager_sub,caminfol_sub,caminfor_sub);
